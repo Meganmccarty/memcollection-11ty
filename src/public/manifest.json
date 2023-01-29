@@ -1,0 +1,28 @@
+{
+    "short_name": "Eleventy Starter Template",
+    "name": "Eleventy Starter Template",
+    "description": "A starter template for creating websites with Eleventy.",
+    "icons": [
+        {
+            "src": "favicon.svg",
+            "type": "image/svg+xml",
+            "sizes": "192x192 512x512"
+        },
+        {
+            "src": "splash_icon.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "maskable_icon.png",
+            "type": "image/png",
+            "sizes": "196x196",
+            "purpose": "any maskable"
+        }
+    ],
+    "start_url": "/",
+    "scope": "/",
+    "background_color": "#f8f8f8",
+    "theme_color": "#f8f8f8",
+    "display": "standalone"
+}

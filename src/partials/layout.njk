@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>{{ title }}</title>
+        <meta name="description" content="{{ description }}" />
+
+        <link rel="icon" href="/favicon.svg" type="image/svg+html" />
+        <link rel="alternate icon" href="/favicon.png" type="image/png" />
+        <link rel="mask-icon" href="/favicon.svg" />
+
+        <link rel="apple-touch-icon" href="/maskable_icon.png" />
+
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#f8f8f8" />
+
+        <link rel="stylesheet" href="/css/tw-styles.css" />
+        {# <link rel="stylesheet" href="/css/styles.css" /> #}
+    </head>
+    <body class="tw-border-emerald-900 tw-border-4 tw-m-1">
+        {% block header %}
+            <header>
+                <p>This is the header.</p>
+            </header>
+        {% endblock %}
+        <main>
+            {% block content %}
+                {{ content | safe }}
+            {% endblock %}
+        </main>
+        {% block footer %}
+            <footer>
+                <p>This is the footer.</p>
+            </footer>
+        {% endblock %}
+        <script src="/additive-math.js" type="module"></script>
+        <script src="/additive-math.legacy.js" nomodule></script>
+
+        {% block scripts%}{% endblock %}
+
+        <script type="module">
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/service-worker.js');
+                });
+            }
+        </script>
+    </body>
+</html>

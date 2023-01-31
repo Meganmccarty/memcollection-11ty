@@ -27,7 +27,7 @@
     "postupdate-deps": "npm install"
   },
   "keywords": [],
-  "author": "",
+  "author": "Megan McCarty",
   "license": "ISC",
   "browserslist": [
     ">0%",

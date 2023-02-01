@@ -20,9 +20,7 @@
     </head>
     <body>
         {% block header %}
-            <header>
-                <p>This is the header.</p>
-            </header>
+            {% include "header.njk" %}
         {% endblock %}
         <main>
             {% block content %}
@@ -30,9 +28,7 @@
             {% endblock %}
         </main>
         {% block footer %}
-            <footer>
-                <p>This is the footer.</p>
-            </footer>
+            {% include "footer.njk" %}
         {% endblock %}
 
         {% block scripts%}{% endblock %}

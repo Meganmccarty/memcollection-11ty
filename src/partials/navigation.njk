@@ -1,0 +1,52 @@
+<nav id="navigation">
+    <div id="nav-container">
+        <button aria-label="Open menu" id="open-menu">
+            <img alt="" src="/hamburger-icon-white-sm.png"/>
+        </button>
+        <a href="/" id="home-link">
+            <img alt="" src="/logo-white.png"/>
+            MEM Collection
+        </a>
+        <ul id="menu" role="list">
+            <li class="first-list-item">
+                <button aria-label="Close menu" id="close-menu">
+                    <img alt="" src="/hamburger-icon-white-sm.png"/>
+                </button>
+            </li>
+            <li>
+                <a href="/about">About</a>
+            </li>
+            <li>
+                <a href="/specimens">Specimens</a>
+            </li>
+            <li>
+                <a href="/collecting-trips">Trips</a>
+            </li>
+            <li class="dropdown-list-item">
+                <button aria-controls="pages-dropdown"
+                        aria-expanded="false"
+                        id="pages-button">
+                    Pages
+                    <img alt="" class="icon-chevron-down" src="/chevron-down-icon-sm.png"/>
+                    <img alt="" class="icon-chevron-up hide" src="/chevron-up-icon-sm.png"/>
+                </button>
+                <ul class="hide" id="pages-dropdown">
+                    {% for order in orders %}
+                    <li>
+                        <a href="/pages/{{ order.name.toLowerCase() }}" tabindex="-1">{{ order.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li>
+                <a href="/labels">Labels</a>
+            </li>
+        </ul>
+    </div>
+    <div id="search-container">
+        <input aria-label="Enter search term" type="text" />
+        <button aria-label="Search" id="search-button">
+            <img alt="" src="/search-icon-white-sm.png" />
+        </button>
+    </div>
+</nav>

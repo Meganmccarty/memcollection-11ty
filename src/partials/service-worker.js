@@ -14,7 +14,6 @@ const EXCLUDED_URLS = [];
 const PRE_CACHE_URLS = [
     '/',
     '/css/styles.css',
-    '/css/tw-styles.css',
 ];
 
 // add any hosts that you want to bypass
@@ -54,6 +53,11 @@ self.addEventListener('fetch', (event) => {
 
     // if it's an excluded URL, do nothing
     if (EXCLUDED_URLS.some((page) => event.request.url.indexOf(page) > -1)) {
+        return;
+    }
+
+    // fix chrome extension errors
+    if (!(event.request.url.indexOf('http') === 0)) {
         return;
     }
 

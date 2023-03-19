@@ -20,9 +20,7 @@
         <link rel="stylesheet" href="/css/navigation.css" />
     </head>
     <body>
-        {% block header %}
-            {% include "navigation.njk" %}
-        {% endblock %}
+        {% include "navigation.njk" %}
         <main>
             {% block content %}
                 {{ content | safe }}
@@ -32,7 +30,7 @@
             {% include "footer.njk" %}
         {% endblock %}
 
-        {% block scripts%}{% endblock %}
+        {% block scripts %}{% endblock %}
 
         <script type="module">
             if ('serviceWorker' in navigator) {
@@ -41,5 +39,7 @@
                 });
             }
         </script>
+        <script src="/navigation.js" type="module"></script>
+        <script src="/navigation.legacy.js" nomodule></script>
     </body>
 </html>

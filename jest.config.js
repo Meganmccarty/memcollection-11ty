@@ -3,6 +3,7 @@ module.exports = {
     testEnvironment: 'jsdom',
     transform: {
         '^.+\\.js$': 'babel-jest',
-        '^.+\\.(ts|tsx)?$': 'ts-jest',
+        '^.+\\.(ts|tsx)?$': ['ts-jest', { isolatedModules: true }],
     },
+    verbose: true,
 };

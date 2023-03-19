@@ -1,4 +1,5 @@
 import 'cypress-axe';
+import { terminalLog } from '../support/terminalLog';
 
 describe('load page', () => {
     beforeEach(() => {
@@ -8,6 +9,6 @@ describe('load page', () => {
 
     it('has no detectable a11y violations on load', () => {
         // Test the page at initial load
-        cy.checkA11y();
+        cy.checkA11y(undefined, undefined, terminalLog);
     });
 });

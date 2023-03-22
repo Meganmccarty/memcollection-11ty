@@ -1,0 +1,38 @@
+---
+pagination:
+    data: orders
+    size: 1
+    alias: order
+eleventyComputed:
+    title: "{{ order.name }} | MEMC"
+    description: "The detail page for the order {{ order.name }}"
+layout: layout.njk
+permalink: "/orders/{{ order.name.toLowerCase() }}/"
+---
+{% block css %}
+    <link rel="stylesheet" href="/css/orders.css" />
+{% endblock %}
+
+<h1>{{ order.name }} {{ order.authority }} – {{ order.common_name }}</h1>
+<p class="hide" id="empty-taxon">There are no family pages in this order.</p>
+<ul aria-label="Families" class="taxonomy-list">
+    {% for family in families %}
+        {% if family.order.name === order.name %}
+            <li>
+                <a href="/orders/{{ order.name.toLowerCase() }}/families/{{ family.name.toLowerCase() }}/">
+                    {% if family.get_image_url %}
+                        <img alt="{{ family.alt_text }}" src="{{ family.get_image_url }}" />
+                    {% else %}
+                        <div><span>No image</span></div>
+                    {% endif %}
+                    <span class="taxon-name">{{ family.name }}</span>
+                </a>
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+{% block scripts %}
+    <script src="/order.js" type="module"></script>
+    <script src="/order.legacy.js" nomodule></script>
+{% endblock %}

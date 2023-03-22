@@ -39,7 +39,9 @@ export function manageDropdownTabIndex(e: KeyboardEvent, dropdown: HTMLElement) 
 
         // If 'Escape' pressed, close the dropdown
         case 'Escape':
-            pagesBtn ? toggleDropdown(pagesBtn, dropdown) : null;
+            if (pagesBtn) {
+                toggleDropdown(pagesBtn, dropdown);
+            }
             break;
 
         default:

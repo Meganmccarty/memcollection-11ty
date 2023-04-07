@@ -13,7 +13,9 @@ const EXCLUDED_URLS = [];
 // add any URLs that you want cached when the service worker is installed
 const PRE_CACHE_URLS = [
     '/',
+    '/css/navigation.css',
     '/css/styles.css',
+    '/assets/logo-white.png',
 ];
 
 // add any hosts that you want to bypass

@@ -36,6 +36,6 @@ module.exports = {
     },
     output: {
         filename: '[name].legacy.js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'dist/js'),
     },
 };

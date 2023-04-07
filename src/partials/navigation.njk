@@ -1,16 +1,28 @@
-<nav id="navigation">
-    <div id="nav-container">
+<div id="nav-container">
+    <nav id="navigation">
         <button aria-label="Open menu" id="open-menu">
-            <img alt="" src="/hamburger-icon-white-sm.png"/>
+            <picture>
+                <source type="image/webp" srcset="/assets/hamburger-icon-white-sm.webp">
+                <source type="image/png" srcset="/assets/hamburger-icon-white-sm.png">
+                <img alt="" />
+            </picture>
         </button>
         <a href="/" id="home-link">
-            <img alt="" src="/logo-white.png"/>
+            <picture>
+                <source type="image/webp" srcset="/assets/logo-white.webp">
+                <source type="image/png" srcset="/assets/logo-white.png">
+                <img alt="" />
+            </picture>
             MEM Collection
         </a>
         <ul id="menu" role="list">
             <li class="first-list-item">
                 <button aria-label="Close menu" id="close-menu">
-                    <img alt="" src="/hamburger-icon-white-sm.png"/>
+                     <picture>
+                        <source type="image/webp" srcset="/assets/hamburger-icon-white-sm.webp">
+                        <source type="image/png" srcset="/assets/hamburger-icon-white-sm.png">
+                        <img alt="" />
+                    </picture>
                 </button>
             </li>
             <li>
@@ -27,8 +39,16 @@
                         aria-expanded="false"
                         id="pages-button">
                     Pages
-                    <img alt="" class="icon-chevron-down" src="/chevron-down-icon-sm.png"/>
-                    <img alt="" class="icon-chevron-up hide" src="/chevron-up-icon-sm.png"/>
+                    <picture>
+                        <source type="image/webp" srcset="/assets/chevron-down-icon-sm.webp">
+                        <source type="image/png" srcset="/assets/chevron-down-icon-sm.png">
+                        <img alt="" class="icon-chevron-down" />
+                    </picture>
+                    <picture>
+                        <source type="image/webp" srcset="/assets/chevron-up-icon-sm.webp">
+                        <source type="image/png" srcset="/assets/chevron-up-icon-sm.png">
+                        <img alt="" class="icon-chevron-up hide" />
+                    </picture>
                 </button>
                 <ul class="hide" id="pages-dropdown">
                     {% for order in orders %}
@@ -42,11 +62,9 @@
                 <a href="/labels">Labels</a>
             </li>
         </ul>
-    </div>
-    <div id="search-container">
-        <input aria-label="Enter search term" type="text" />
-        <button aria-label="Search" id="search-button">
-            <img alt="" src="/search-icon-white-sm.png" />
-        </button>
-    </div>
-</nav>
+    </nav>
+    <form aria-label="Site" id="search-container" role="search">
+        <input aria-label="Search term" type="text" />
+        <button aria-label="Submit" id="search-button"></button>
+    </form>
+</div>

@@ -1,22 +1,22 @@
-export function checkMenu(e: KeyboardEvent | null, menu: HTMLElement) {
+export function checkMenu(e: KeyboardEvent | null, elements: HTMLElement[]) {
     // Hide the menu if window is resized greater than mobile
     if (window.innerWidth > 900) {
-        menu.classList.remove('show');
+        elements.forEach((el) => el.classList.remove('show'));
     }
 
     // Close menu if 'Escape' pressed
-    if (menu.classList.contains('show') && e?.key === 'Escape') {
-        menu.classList.remove('show');
+    if (elements[0].classList.contains('show') && e?.key === 'Escape') {
+        elements.forEach((el) => el.classList.remove('show'));
         document.getElementById('open-menu')?.focus();
     }
 }
 
-export function toggleMenu(e: MouseEvent, menu: HTMLElement, btn: HTMLElement, action: string) {
+export function toggleMenu(e: MouseEvent, elements: HTMLElement[], btn: HTMLElement, action: string) {
     // Check if the menu should be shown or hidden
     if (action === 'show') {
-        menu.classList.add('show');
+        elements.forEach((el) => el.classList.add('show'));
     } else if (action === 'hide') {
-        menu.classList.remove('show');
+        elements.forEach((el) => el.classList.remove('show'));
     }
 
     // Bring focus to the open or close menu button if keyboard was used

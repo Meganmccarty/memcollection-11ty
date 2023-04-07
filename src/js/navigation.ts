@@ -7,22 +7,29 @@ export function initializeNavigation() {
     const closeMenuBtn = document.getElementById('close-menu');
     const menu = document.getElementById('menu');
     const openMenuBtn = document.getElementById('open-menu');
+    const overlay = document.getElementById('overlay');
     const pagesBtn = document.getElementById('pages-button');
     const pagesDropdown = document.getElementById('pages-dropdown');
 
-    if (menu) {
+    if (menu && overlay) {
         // Ensure correct menu (desktop or mobile) is shown when page loaded
-        checkMenu(null, menu);
+        checkMenu(null, [menu, overlay]);
 
         // Add event listeners for closing mobile menu
-        document.addEventListener('keyup', (e) => checkMenu(e, menu));
-        window.addEventListener('resize', () => checkMenu(null, menu));
+        document.addEventListener('keyup', (e) => checkMenu(e, [menu, overlay]));
+        window.addEventListener('resize', () => checkMenu(null, [menu, overlay]));
     }
 
-    if (closeMenuBtn && menu && openMenuBtn) {
+    if (closeMenuBtn && menu && openMenuBtn && overlay) {
         // Add event listeners to open/close menu buttons
-        closeMenuBtn.addEventListener('click', (e) => toggleMenu(e, menu, openMenuBtn, 'hide'));
-        openMenuBtn.addEventListener('click', (e) => toggleMenu(e, menu, closeMenuBtn, 'show'));
+        closeMenuBtn.addEventListener('click', (e) => toggleMenu(e, [menu, overlay], openMenuBtn, 'hide'));
+        openMenuBtn.addEventListener('click', (e) => toggleMenu(e, [menu, overlay], closeMenuBtn, 'show'));
+
+        document.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                toggleMenu(e, [menu, overlay], openMenuBtn, 'hide');
+            }
+        });
     }
 
     if (pagesDropdown) {

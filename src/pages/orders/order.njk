@@ -3,6 +3,7 @@ pagination:
     data: orders
     size: 1
     alias: order
+    addAllPagesToCollections: true
 eleventyComputed:
     title: "{{ order.name }} | MEMC"
     description: "The detail page for the order {{ order.name }}"
@@ -33,6 +34,6 @@ permalink: "/orders/{{ order.name.toLowerCase() }}/"
 </ul>
 
 {% block scripts %}
-    <script src="/order.js" type="module"></script>
-    <script src="/order.legacy.js" nomodule></script>
+    <script src="/js/order.js" type="module"></script>
+    <script src="/js/order.legacy.js" nomodule></script>
 {% endblock %}

@@ -4,7 +4,7 @@ import { checkMenu, toggleMenu } from './navMenu';
 
 describe('checkMenu()', () => {
     let menu: HTMLElement;
-    let overlay: HTMLElement
+    let overlay: HTMLElement;
 
     beforeEach(() => {
         document.body.innerHTML = `

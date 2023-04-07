@@ -11,7 +11,12 @@ export function checkMenu(e: KeyboardEvent | null, elements: HTMLElement[]) {
     }
 }
 
-export function toggleMenu(e: MouseEvent, elements: HTMLElement[], btn: HTMLElement, action: string) {
+export function toggleMenu(
+    e: MouseEvent,
+    elements: HTMLElement[],
+    btn: HTMLElement,
+    action: string,
+) {
     // Check if the menu should be shown or hidden
     if (action === 'show') {
         elements.forEach((el) => el.classList.add('show'));

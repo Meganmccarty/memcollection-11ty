@@ -18,6 +18,7 @@ export function manageDropdownTabIndex(e: KeyboardEvent, dropdown: HTMLElement) 
 
     switch (e.key) {
         case 'ArrowDown':
+            e.preventDefault();
             if (anyFocused === null) {
                 // If nothing focused, focus first element
                 focusElement(links[0]);
@@ -28,6 +29,7 @@ export function manageDropdownTabIndex(e: KeyboardEvent, dropdown: HTMLElement) 
             break;
 
         case 'ArrowUp':
+            e.preventDefault();
             if (anyFocused === null) {
                 // If nothing focused, focus last element
                 focusElement(links[links.length - 1]);

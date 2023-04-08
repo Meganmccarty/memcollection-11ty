@@ -4,5 +4,238 @@ description: The labels page for the MEM Collection site.
 layout: layout.njk
 ---
 
-<h1>Labels</h1>
-<p>This page is currently under construction.</p>
+<h1>Generate Labels</h1>
+<p>
+    The form below is for generating labels that can be printed and attached to actual specimens.
+    Use the form to create labels for a subset of specimens,
+    or leave all fields blank to generate a label for each specimen in the database.
+</p>
+<br />
+<p>
+    Note: The generated labels are optimized for printing from <em>Firefox only</em>.
+    Chrome cannot render fonts below 4pt, and Safari is not as precise when dealing with decimals (e.g., 2.75pt).
+</p>
+<form id="label-form">
+    <fieldset>
+        <legend>Taxonomy</legend>
+        <label>
+            Order
+            <input name="order" placeholder="Lepidoptera" type="text"/>
+        </label>
+        <label>
+            Family
+            <input name="family" placeholder="Papilionidae" type="text"/>
+        </label>
+        <label>
+            Subfamily
+            <input name="subfamily" placeholder="Papilioninae" type="text"/>
+        </label>
+        <label>
+            Tribe
+            <input name="tribe" placeholder="Troidini" type="text"/>
+        </label>
+        <label>
+            Genus
+            <input name="genus" placeholder="Battus" type="text"/>
+        </label>
+        <label>
+            Species
+            <input name="species" placeholder="philenor" type="text"/>
+        </label>
+        <label>
+            Subspecies
+            <input name="subspecies" placeholder="hirsuta" type="text"/>
+        </label>
+        <label>
+            Determiner First Name
+            <input name="determiner_firstname" placeholder="Jane" type="text"/>
+        </label>
+        <label>
+            Determiner Last Name
+            <input name="determiner_lastname" placeholder="Doe" type="text"/>
+        </label>
+        <label>
+            Determined Year
+            <input name="determiner_year" placeholder="2015" type="number"/>
+        </label>
+    </fieldset>
+    <fieldset>
+        <legend>Specimen Info</legend>
+        <label>
+            Unique Specimen Identifier (USI)
+            <input name="usi" placeholder="MEM-000000" type="text"/>
+        </label>
+        <label>
+            Preparer First Name
+            <input name="preparer_firstname" placeholder="Jane" type="text"/>
+        </label>
+        <label>
+            Preparer Last Name
+            <input name="preparer_lastname" placeholder="Doe" type="text"/>
+        </label>
+        <label>
+            Preparation Type
+            <input name="preparation" placeholder="spread" type="text"/>
+        </label>
+        <label>
+            Preparation Date
+            <input name="preparation_date" placeholder="2015-07-01" type="date"/>
+        </label>
+        <label>
+            Sex
+            <select name="sex">
+                <option></option>
+                <option>male</option>
+                <option>female</option>
+            </select>
+        </label>
+        <label>
+            Stage
+            <select name="stage">
+                <option></option>
+                <option>egg</option>
+                <option>larva</option>
+                <option>nymph</option>
+                <option>pupa</option>
+                <option>adult</option>
+            </select>
+        </label>
+         <label>
+            Labels Printed?
+            <select name="labels_printed">
+                <option></option>
+                <option>true</option>
+                <option>false</option>
+            </select>
+        </label>
+        <label>
+            Labeled?
+            <select name="labeled">
+                <option></option>
+                <option>true</option>
+                <option>false</option>
+            </select>
+        </label>
+        <label>
+            Photographed?
+            <select name="photographed">
+                <option></option>
+                <option>true</option>
+                <option>false</option>
+            </select>
+        </label>
+        <label>
+            Identified?
+            <select name="identified">
+                <option></option>
+                <option>true</option>
+                <option>false</option>
+            </select>
+        </label>
+    </fieldset>
+    <fieldset>
+        <legend>Geography</legend>
+        <label>
+            Country
+            <input name="country" placeholder="United States of America" type="text"/>
+        </label>
+        <label>
+            State
+            <input name="state" placeholder="Indiana" type="text"/>
+        </label>
+        <label>
+            County
+            <input name="county" placeholder="Switzerland" type="text"/>
+        </label>
+        <label>
+            Locality
+            <input name="locality" placeholder="Boone Robinson Rd" type="text"/>
+        </label>
+        <label>
+            Latitude
+            <input name="gps_lat" placeholder="38.850000" type="number"/>
+        </label>
+        <label>
+            Longitude
+            <input name="gps_long" placeholder="-84.865000" type="number"/>
+        </label>
+        <label>
+            Elevation (meters)
+            <input name="elevation" placeholder="250" type="number"/>
+        </label>
+        <label>
+            Collecting Trip
+            <input name="collecting_trip" placeholder="LepSoc 2019" type="text"/>
+        </label>
+    </fieldset>
+    <fieldset>
+        <legend>Collecting Event</legend>
+        <label>
+            Day
+            <input max="31" min="1" name="day" placeholder="5" type="number"/>
+        </label>
+        <label>
+            Month
+            <select name="month">
+                <option></option>
+                <option>January</option>
+                <option>February</option>
+                <option>March</option>
+                <option>April</option>
+                <option>May</option>
+                <option>June</option>
+                <option>July</option>
+                <option>August</option>
+                <option>September</option>
+                <option>October</option>
+                <option>November</option>
+                <option>December</option>
+            </select>
+        </label>
+        <label>
+            Year
+            <input name="year" placeholder="2015" type="number"/>
+        </label>
+        <label>
+            Collector First Name
+            <input name="collector_firstname" placeholder="Jane" type="text"/>
+        </label>
+        <label>
+            Collector Last Name
+            <input name="collector_lastname" placeholder="Doe" type="text"/>
+        </label>
+        <label>
+            Method
+            <input name="method" placeholder="Net" type="text"/>
+        </label>
+        <label>
+            Weather
+            <input name="weather" placeholder="Partly cloudy" type="text"/>
+        </label>
+        <label>
+            Temperature (Celsius only)
+            <input name="temperature" placeholder="23.0" type="number"/>
+        </label>
+        <label>
+            Time of Day
+            <input name="time_of_day" type="time"/>
+        </label>
+        <label>
+            Habitat
+            <input name="habitat" placeholder="UV trap" type="text"/>
+        </label>
+        <label>
+            Notes
+            <input name="notes" placeholder="Double check locality" type="text"/>
+        </label>
+    </fieldset>
+    <input name="Create Labels!" type="submit"/>
+</form>
+
+<h2>Output</h2>
+<div id="label-output"></div>
+
+{% block scripts %}
+    <script src="/js/labels.js" type="module"></script>
+    <script src="/js/labels.legacy.js" nomodule></script>
+{% endblock %}

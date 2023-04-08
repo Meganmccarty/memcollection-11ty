@@ -75,7 +75,16 @@ layout: layout.njk
         </label>
         <label>
             Preparation Type
-            <input name="preparation" placeholder="spread" type="text"/>
+            <select name="preparation">
+                <option></option>
+                <option>alcohol</option>
+                <option>container</option>
+                <option>envelope</option>
+                <option>minuten</option>
+                <option>pinned</option>
+                <option>pointed</option>
+                <option>spread</option>
+            </select>
         </label>
         <label>
             Preparation Date
@@ -87,6 +96,7 @@ layout: layout.njk
                 <option></option>
                 <option>male</option>
                 <option>female</option>
+                <option>unknown</option>
             </select>
         </label>
         <label>
@@ -106,6 +116,7 @@ layout: layout.njk
                 <option></option>
                 <option>true</option>
                 <option>false</option>
+                <option>unknown</option>
             </select>
         </label>
         <label>
@@ -114,6 +125,7 @@ layout: layout.njk
                 <option></option>
                 <option>true</option>
                 <option>false</option>
+                <option>unknown</option>
             </select>
         </label>
         <label>
@@ -122,6 +134,7 @@ layout: layout.njk
                 <option></option>
                 <option>true</option>
                 <option>false</option>
+                <option>unknown</option>
             </select>
         </label>
         <label>
@@ -130,6 +143,7 @@ layout: layout.njk
                 <option></option>
                 <option>true</option>
                 <option>false</option>
+                <option>unknown</option>
             </select>
         </label>
     </fieldset>
@@ -206,7 +220,23 @@ layout: layout.njk
         </label>
         <label>
             Method
-            <input name="method" placeholder="Net" type="text"/>
+            <select name="method">
+                <option></option>
+                <option>Bait</option>
+                <option>By hand</option>
+                <option>Light</option>
+                <option>MV light</option>
+                <option>MV light sheet</option>
+                <option>Net</option>
+                <option>Reared</option>
+                <option>Sweep</option>
+                <option>Trap</option>
+                <option>UV light</option>
+                <option>UV light sheet</option>
+                <option>UV/MV light sheet</option>
+                <option>UV/MV/LED light sheet</option>
+                <option>UV trap</option>
+            </select>
         </label>
         <label>
             Weather
@@ -222,7 +252,7 @@ layout: layout.njk
         </label>
         <label>
             Habitat
-            <input name="habitat" placeholder="UV trap" type="text"/>
+            <input name="habitat" placeholder="Flying in field" type="text"/>
         </label>
         <label>
             Notes
@@ -233,7 +263,9 @@ layout: layout.njk
 </form>
 
 <h2>Output</h2>
-<div id="label-output"></div>
+<div id="label-output">
+    <p>There are currently no labels. Use the form above to create some!</p>
+</div>
 
 {% block scripts %}
     <script src="/js/labels.js" type="module"></script>

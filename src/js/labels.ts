@@ -86,21 +86,21 @@ function initializeForm() {
                         <div class="single-label">
                             <div class="label-locality">
                                 <span>
-                                    ${label.country ? label.country.abbr : null}
-                                    ${label.state ? label.state.abbr : null}
-                                    ${label.county ? label.county.county_abbr : null}
+                                    ${label.country ? label.country.abbr : ''}
+                                    ${label.state ? label.state.abbr : ''}
+                                    ${label.county ? label.county.county_abbr : ''}
                                 </span>
                                 <span>
-                                    ${label.locality ? label.locality.range : null}
-                                    ${label.locality ? label.locality.town : null}
+                                    ${label.locality ? label.locality.range : ''}
+                                    ${label.locality ? label.locality.town : ''}
                                 </span>
                                 <span>
-                                    ${label.locality ? label.locality.name : null}
+                                    ${label.locality ? label.locality.name : ''}
                                 </span>
                                 <span>
-                                    ${label.gps && label.gps.latitude ? label.gps.latitude : null}°N
-                                    ${label.gps && label.gps.longitude ? Math.abs(label.gps.longitude) : null}°W
-                                    ${label.gps && label.gps.elevation ? label.gps.elevation : null}m
+                                    ${label.gps && label.gps.latitude ? `${label.gps.latitude}°N` : ''}
+                                    ${label.gps && label.gps.longitude ? `${Math.abs(label.gps.longitude)}°W` : ''}
+                                    ${label.gps && label.gps.elevation ? `${label.gps.elevation}m` : ''}
                                 </span>
                                 <span>
                                     ${label.collected_date} ${label.display_collectors}
@@ -111,14 +111,14 @@ function initializeForm() {
                             </div>
                             <div class="label-notes">
                                 <span>
-                                    ${label.method ? label.method : null}
+                                    ${label.method}
                                 </span>
                                 <span>
-                                    ${label.weather} ${label.temp_C} ${label.temp_F ? `(${label.temp_F})` : null}
+                                    ${label.weather} ${label.temp_C} ${label.temp_F ? `(${label.temp_F})` : ''}
                                     ${label.time_of_day}
                                 </span>
                                 <span>
-                                    ${label.habitat ? label.habitat : null}
+                                    ${label.habitat}
                                 </span>
                             </div>
                             <div class="label-taxonomy">
@@ -144,6 +144,7 @@ function initializeForm() {
 
                 const labelOutput = document.getElementById('label-output');
                 if (labelOutput) {
+                    labelOutput.innerHTML = `<p>${transformedData.length} labels generated for the above data</p>`
                     transformedData.forEach((label: HTMLElement) => {
                         labelOutput.innerHTML += label;
                     });

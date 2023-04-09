@@ -40,7 +40,7 @@ let formData = {
     temperature: '',
     time_of_day: '',
     habitat: '',
-    notes: ''
+    notes: '',
 };
 
 export function addChangeEvent(
@@ -48,7 +48,7 @@ export function addChangeEvent(
 ) {
     return elements.forEach((element) => {
         element.addEventListener('change', () => {
-            return formData = {
+            formData = {
                 ...formData,
                 [element.name]: element.value,
             };
@@ -62,15 +62,14 @@ export function handleSubmit(event: SubmitEvent) {
     /* Turn the form data object into an array of strings
        in format '${key}=${value}&' */
     let formArray: Array<string> = [];
-    let key: keyof typeof formData;
 
-    for (key in formData) {
-        formArray = [...formArray, `${key}=${formData[key]}&`];
-    }
+    Object.entries(formData).forEach((key, value) => {
+        formArray = [...formArray, `${key}=${value}&`];
+    });
 
     /* Convert the array of strings into just one string
        Remove the '&' character on the last string */
-    let formString = formArray.join("");
+    let formString = formArray.join('');
     formString = formString.slice(0, formString.length - 1);
 
     const url = `https://api.meganemccartycollection.com/api/specimens/specimen-records?${formString}`;

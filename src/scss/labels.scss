@@ -7,15 +7,14 @@
     color: c.$off-white;
     display: flex;
     flex-direction: column;
-    padding: 0.25rem 0.50rem;
+    padding: 0.25rem 0.5rem;
     margin: 0.75rem 1.5rem;
 
     fieldset {
         align-items: flex-start;
         border: 2px solid c.$medium-green-level-1;
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-flow: row wrap;
         font-size: 1.25rem;
         justify-content: flex-start;
         margin: 0.25rem;
@@ -25,10 +24,10 @@
             border-right: 1px solid c.$medium-gray-level-1;
             display: flex;
             flex-direction: row;
-            font-size: 0.80rem;
-            height: 2.50rem;
+            font-size: 0.8rem;
+            height: 2.5rem;
             justify-content: space-between;
-            padding: 0 0.50rem;
+            padding: 0 0.5rem;
 
             input,
             select {
@@ -46,7 +45,7 @@
         }
     }
 
-    button[type=submit] {
+    button[type='submit'] {
         background-color: c.$dark-green-level-3;
         border: none;
         color: c.$off-white;
@@ -70,8 +69,7 @@
     align-items: flex-start;
     background-color: white;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     justify-content: flex-start;
     margin: 0.75rem 1.5rem;
 
@@ -106,7 +104,7 @@
         .label-notes span,
         .label-notes p,
         .label-taxonomy span {
-            font-family: 'Geneva', sans-serif;
+            font-family: Geneva, sans-serif;
             font-size: 3pt;
             letter-spacing: -0.05px;
             line-height: 1.6;
@@ -138,7 +136,7 @@
                need to add +1 to account for legend */
             label:nth-child(6n+1) {
                 border: none;
-                padding: 0 0 0 0.50rem;
+                padding: 0 0 0 0.5rem;
             }
         }
     }
@@ -148,7 +146,7 @@
     #label-form {
         fieldset {
             label {
-                min-width: 11.50rem;
+                min-width: 11.5rem;
                 width: 18.9%;
             }
 
@@ -156,7 +154,7 @@
                need to add +2 to account for legend */
             label:nth-child(5n+2),
             label:nth-child(10n+2) {
-                padding: 0 0.50rem 0 0;
+                padding: 0 0.5rem 0 0;
             }
 
             /* To style last element in 5th column,
@@ -164,7 +162,7 @@
             label:nth-child(5n+1),
             label:nth-child(10n+1) {
                 border: none;
-                padding: 0 0 0 0.50rem;
+                padding: 0 0 0 0.5rem;
             }
         }
     }
@@ -181,7 +179,7 @@
                need to add +2 to account for legend */
             label:nth-child(4n+2),
             label:nth-child(8n+2) {
-                padding: 0 0.50rem 0 0;
+                padding: 0 0.5rem 0 0;
             }
 
             /* To style last element in 4th column,
@@ -189,7 +187,7 @@
             label:nth-child(4n+1),
             label:nth-child(8n+1) {
                 border: none;
-                padding: 0 0 0 0.50rem;
+                padding: 0 0 0 0.5rem;
             }
         }
     }
@@ -207,7 +205,7 @@
             label:nth-child(3n+2),
             label:nth-child(6n+2),
             label:nth-child(9n+2) {
-                padding: 0 0.50rem 0 0;
+                padding: 0 0.5rem 0 0;
             }
 
             /* To style last element in 3rd column,
@@ -216,7 +214,7 @@
             label:nth-child(6n+1),
             label:nth-child(9n+1) {
                 border: none;
-                padding: 0 0 0 0.50rem;
+                padding: 0 0 0 0.5rem;
             }
         }
     }
@@ -227,7 +225,7 @@
         fieldset {
             label {
                 border: none;
-                min-width: 11.50rem;
+                min-width: 11.5rem;
                 padding: 0;
                 width: 47.9%;
             }
@@ -236,13 +234,12 @@
                (and vice versa) due to legend */
             label:nth-child(even) {
                 border-right: 1px solid c.$medium-gray-level-1;
-                padding: 0 0.50rem 0 0;
+                padding: 0 0.5rem 0 0;
             }
 
             label:nth-child(odd) {
-                padding: 0 0 0 0.50rem;
+                padding: 0 0 0 0.5rem;
             }
-
         }
     }
 }
@@ -252,7 +249,7 @@
         fieldset {
             label {
                 border: none;
-                min-width: 11.50rem;
+                min-width: 11.5rem;
                 padding: 0;
                 width: 100%;
             }

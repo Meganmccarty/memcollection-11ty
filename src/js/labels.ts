@@ -1,7 +1,5 @@
 import { addChangeEvent, handleSubmit } from './labels/formData';
 
-document.addEventListener('DOMContentLoaded', initializeForm);
-
 export function initializeForm() {
     const form = document.getElementById('label-form');
     const inputs = form?.querySelectorAll('input');
@@ -15,3 +13,5 @@ export function initializeForm() {
 
     form?.addEventListener('submit', (e) => handleSubmit(e));
 }
+
+document.addEventListener('DOMContentLoaded', initializeForm);

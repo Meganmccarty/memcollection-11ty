@@ -48,6 +48,29 @@ p {
     margin: 0 1.5rem;
 }
 
+a {
+    color: c.$light-green-level-2;
+    text-decoration: underline;
+
+    &:visited {
+        color: c.$light-pink-level-2;
+    }
+
+    &:visited:focus-visible {
+        outline: c.$light-pink-level-2 0.125rem solid;
+    }
+
+    &:focus-visible,
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:focus-visible {
+        color: c.$off-white;
+        outline: c.$light-green-level-2 0.125rem solid;
+    }
+}
+
 footer {
     color: c.$off-white;
     margin: 3rem 1rem 1rem;

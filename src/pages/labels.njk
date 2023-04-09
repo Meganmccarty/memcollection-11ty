@@ -3,6 +3,9 @@ title: Labels | MEMC
 description: The labels page for the MEM Collection site.
 layout: layout.njk
 ---
+{% block css %}
+    <link rel="stylesheet" href="/css/labels.css" />
+{% endblock %}
 
 <h1>Generate Labels</h1>
 <p>
@@ -259,13 +262,12 @@ layout: layout.njk
             <input name="notes" placeholder="Double check locality" type="text"/>
         </label>
     </fieldset>
-    <input name="Create Labels!" type="submit"/>
+    <button type="submit">Create Labels!</button>
 </form>
 
 <h2>Output</h2>
-<div id="label-output">
-    <p>There are currently no labels. Use the form above to create some!</p>
-</div>
+<p>There are currently no labels. Use the form above to create some!</p>
+<div id="label-output"></div>
 
 {% block scripts %}
     <script src="/js/labels.js" type="module"></script>

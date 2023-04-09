@@ -133,18 +133,18 @@ function initializeForm() {
                                             ${label.taxon_json.authority}
                                         </span>
                                     `
-                                    : null}
+                                    : ''}
                                 ${label.display_determiner
                                     ? `<span>${label.display_determiner} ${label.determined_year}</span>`
-                                    : null}
+                                    : ''}
                             </div>
                         </div>
                     `;
                 });
 
                 const labelOutput = document.getElementById('label-output');
-                if (labelOutput) {
-                    labelOutput.innerHTML = `<p>${transformedData.length} labels generated for the above data</p>`
+                if (labelOutput && labelOutput.previousElementSibling) {
+                    labelOutput.previousElementSibling.innerHTML = `${transformedData.length} labels generated for the above data`
                     transformedData.forEach((label: HTMLElement) => {
                         labelOutput.innerHTML += label;
                     });

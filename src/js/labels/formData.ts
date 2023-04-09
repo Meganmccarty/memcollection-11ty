@@ -1,6 +1,6 @@
 import { transformData } from './transformData';
 
-let formData = {
+const emptyFormObject = {
     order: '',
     family: '',
     subfamily: '',
@@ -43,6 +43,8 @@ let formData = {
     notes: '',
 };
 
+let formData = { ...emptyFormObject };
+
 export function addChangeEvent(
     elements: NodeListOf<HTMLInputElement> | NodeListOf<HTMLSelectElement>,
 ) {
@@ -63,8 +65,8 @@ export function handleSubmit(event: SubmitEvent) {
        in format '${key}=${value}&' */
     let formArray: Array<string> = [];
 
-    Object.entries(formData).forEach((key, value) => {
-        formArray = [...formArray, `${key}=${value}&`];
+    Object.entries(formData).forEach((entry) => {
+        formArray = [...formArray, `${entry[0]}=${entry[1]}&`];
     });
 
     /* Convert the array of strings into just one string
@@ -76,4 +78,8 @@ export function handleSubmit(event: SubmitEvent) {
     fetch(url)
         .then((response) => response.json())
         .then((data) => transformData(data));
+}
+
+export function resetForm() {
+    formData = { ...emptyFormObject };
 }

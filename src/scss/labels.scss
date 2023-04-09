@@ -45,22 +45,51 @@
         }
     }
 
-    button[type='submit'] {
-        background-color: c.$dark-green-level-3;
-        border: none;
-        color: c.$off-white;
-        margin: 0.25rem;
-        padding: 0.375rem 0.625rem;
+    .form-buttons {
+        display: flex;
+        flex-direction: row;
 
-        &:focus-visible,
-        &:hover {
-            background-color: c.$medium-green-level-3;
-            color: c.$off-black;
+        button {
+            border: none;
+            color: c.$off-white;
+            font-size: 1rem;
+            margin: 0.25rem;
+            padding: 0.375rem 0.625rem;
+
+            &:focus-visible,
+            &:hover {
+                color: c.$off-black;
+            }
+
+            &:focus-visible {
+                outline-offset: 0.125rem;
+            }
         }
 
-        &:focus-visible {
-            outline: c.$light-green-level-1 solid 0.125rem;
-            outline-offset: 0.125rem;
+        button[type='submit'] {
+            background-color: c.$medium-green-level-1;
+            
+            &:focus-visible,
+            &:hover {
+                background-color: c.$medium-green-level-3;
+            }
+            
+            &:focus-visible {
+                outline: c.$light-green-level-1 solid 0.125rem;
+            }
+        }
+
+        button[type='reset'] {
+            background-color: c.$medium-pink-level-2;
+
+            &:focus-visible,
+            &:hover {
+                background-color: c.$light-pink-level-2;
+            }
+            
+            &:focus-visible {
+                outline: c.$light-pink-level-2 solid 0.125rem;
+            }
         }
     }
 }

@@ -60,7 +60,13 @@ export function transformData(data: Array<object>) {
 
     const labelOutput = document.getElementById('label-output');
     if (labelOutput && labelOutput.previousElementSibling) {
+        // Clear out old labels
+        labelOutput.innerHTML = '';
+
+        // Update number of labels generated
         labelOutput.previousElementSibling.innerHTML = `${transformedData.length} labels generated for the above data`;
+
+        // Add each label to the output element
         transformedData.forEach((label: any) => {
             labelOutput.innerHTML += label;
         });

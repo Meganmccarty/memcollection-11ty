@@ -1,6 +1,6 @@
 import { transformData } from './transformData';
 
-let formData = {
+const emptyFormObject = {
     order: '',
     family: '',
     subfamily: '',
@@ -43,6 +43,8 @@ let formData = {
     notes: '',
 };
 
+let formData = { ...emptyFormObject };
+
 export function addChangeEvent(
     elements: NodeListOf<HTMLInputElement> | NodeListOf<HTMLSelectElement>,
 ) {
@@ -76,4 +78,8 @@ export function handleSubmit(event: SubmitEvent) {
     fetch(url)
         .then((response) => response.json())
         .then((data) => transformData(data));
+}
+
+export function resetForm() {
+    formData = { ...emptyFormObject };
 }

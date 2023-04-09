@@ -63,8 +63,8 @@ export function handleSubmit(event: SubmitEvent) {
        in format '${key}=${value}&' */
     let formArray: Array<string> = [];
 
-    Object.entries(formData).forEach((key, value) => {
-        formArray = [...formArray, `${key}=${value}&`];
+    Object.entries(formData).forEach((entry) => {
+        formArray = [...formArray, `${entry[0]}=${entry[1]}&`];
     });
 
     /* Convert the array of strings into just one string

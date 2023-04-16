@@ -67,26 +67,26 @@
         }
 
         button[type='submit'] {
-            background-color: c.$medium-green-level-1;
-            
+            background-color: c.$dark-green-level-3;
+
             &:focus-visible,
             &:hover {
                 background-color: c.$medium-green-level-3;
             }
-            
+
             &:focus-visible {
                 outline: c.$light-green-level-1 solid 0.125rem;
             }
         }
 
         button[type='reset'] {
-            background-color: c.$medium-pink-level-2;
+            background-color: c.$medium-pink-level-1;
 
             &:focus-visible,
             &:hover {
                 background-color: c.$light-pink-level-2;
             }
-            
+
             &:focus-visible {
                 outline: c.$light-pink-level-2 solid 0.125rem;
             }

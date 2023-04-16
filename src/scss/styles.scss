@@ -56,10 +56,6 @@ a {
         color: c.$light-pink-level-2;
     }
 
-    &:visited:focus-visible {
-        outline: c.$light-pink-level-2 0.125rem solid;
-    }
-
     &:focus-visible,
     &:hover {
         text-decoration: none;
@@ -68,6 +64,10 @@ a {
     &:focus-visible {
         color: c.$off-white;
         outline: c.$light-green-level-2 0.125rem solid;
+    }
+
+    &:visited:focus-visible {
+        outline: c.$light-pink-level-2 0.125rem solid;
     }
 }
 

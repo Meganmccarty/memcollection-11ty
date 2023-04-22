@@ -24,7 +24,8 @@ permalink: "/orders/{{ order.name.toLowerCase() }}/"
                     {% if family.get_image_url %}
                         <img alt="{{ family.alt_text }}" src="{{ family.get_image_url }}" />
                     {% else %}
-                        <div><span>No image</span></div>
+                        <img alt="" aria-labelledby="{{ family.name }}" src="/assets/placeholder.webp" />
+                        <span class="placeholder-label" id="{{ family.name }}">No image</span>
                     {% endif %}
                     <span class="taxon-name">{{ family.name }}</span>
                 </a>

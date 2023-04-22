@@ -1,4 +1,4 @@
-@use 'colors' as c;
+@use 'utilities/colors' as c;
 
 html {
     font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -74,4 +74,8 @@ a {
 footer {
     color: c.$off-white;
     margin: 3rem 1rem 1rem;
+}
+
+.hide {
+    display: none;
 }

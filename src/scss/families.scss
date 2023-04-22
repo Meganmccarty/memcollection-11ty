@@ -1,0 +1,76 @@
+@use 'utilities/colors' as c;
+@use 'shared-styles/taxon.scss';
+
+ul.taxonomy-list {
+    li {
+        min-height: 14.75rem;
+
+        a {
+            font-size: 1.0625rem;
+            min-height: 14.75rem;
+
+            .taxon-numbers {
+                display: flex;
+                flex-direction: row;
+                font-size: 0.75rem;
+                justify-content: space-around;
+                margin: 0.75rem 0;
+                width: 100%;
+
+                .p3,
+                .mona {
+                    border-radius: 0.25rem;
+                    padding: 0.25rem 0.5rem;
+                }
+            }
+        }
+    }
+}
+
+#toc {
+    align-items: center;
+    background-color: c.$dark-gray-level-2;
+    border: 0.0625rem solid c.$off-black;
+    color: c.$off-white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0.5rem;
+    width: 50%;
+
+    &.hide {
+        display: none;
+    }
+
+    ul {
+        align-items: center;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            margin: 0.25rem 0.75rem;
+        }
+    }
+}
+
+.back-to-top {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    width: fit-content;
+
+    picture {
+        margin: 0.25rem 0.25rem 0 0;
+
+        img {
+            height: auto;
+            width: 0.5rem;
+        }
+    }
+}

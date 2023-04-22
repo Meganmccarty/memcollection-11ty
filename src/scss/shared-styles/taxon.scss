@@ -1,0 +1,60 @@
+@use '../utilities/colors' as c;
+
+ul.taxonomy-list {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fill, 15rem);
+    justify-content: center;
+    list-style: none;
+    padding: 0 1rem;
+
+    li {
+        background-color: c.$dark-gray-level-2;
+        border: 0.0625rem solid c.$off-black;
+        min-height: 14rem;
+        min-width: 15rem;
+
+        a {
+            align-items: center;
+            color: c.$off-white;
+            display: flex;
+            flex-direction: column;
+            font-size: 1.125rem;
+            min-height: 14rem;
+            justify-content: flex-start;
+            text-decoration: none;
+
+            &:focus-visible,
+            &:hover {
+                outline: c.$medium-green-level-3 solid 0.3125rem;
+
+                .common-name,
+                .taxon-name {
+                    outline: none;
+                    text-decoration: underline;
+                }
+            }
+
+            img {
+                border: 0.125rem solid c.$medium-gray-level-2;
+                height: auto;
+                margin: 0.75rem 0;
+                width: 13.5rem;
+            }
+
+            .placeholder-label {
+                background-color: c.$off-black;
+                bottom: 6.5rem;
+                box-shadow: 0 0 1rem 1rem c.$off-black;
+                margin: 0 0 -1.35rem;
+                position: relative;
+                text-decoration: none;
+
+                &:focus-visible,
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

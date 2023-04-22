@@ -1,0 +1,102 @@
+---
+pagination:
+    data: families
+    size: 1
+    alias: family
+    addAllPagesToCollections: true
+eleventyComputed:
+    title: "{{ family.name }} | MEMC"
+    description: "The detail page for the order {{ family.name }}"
+layout: layout.njk
+permalink: "/orders/{{ family.order.name.toLowerCase() }}/families/{{ family.name.toLowerCase() }}/"
+---
+{% block css %}
+    <link rel="stylesheet" href="/css/families.css" />
+{% endblock %}
+
+<h1>
+    {{ family.name }} {{ family.authority }} 
+    {% if family.common_name %}
+        – {{ family.common_name }}
+    {% endif %}
+</h1>
+
+<nav aria-label="Page" id="toc">
+    Subfamilies
+    <ul>
+        {% for subfamily in subfamilies %}
+            {% if subfamily.family.name === family.name %}
+                <li>
+                    <a href="#{{ subfamily.name }}">
+                        {% if '--' in subfamily.name %}
+                            <i>Incertae sedis</i>
+                        {% else %}
+                            {{ subfamily.name }}
+                        {% endif %}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</nav>
+
+<p class="hide" id="empty-family">There are no species pages in this family.</p>
+
+{% for subfamily in subfamilies %}
+    {% if subfamily.family.name === family.name %}
+        <h2 id="{{ subfamily.name }}">
+            {% if '--' in subfamily.name %}
+                <i>Incertae sedis</i>
+            {% else %}
+                {{ subfamily.name }}
+            {%endif %} 
+            {% if '--' not in subfamily.authority%}
+                {{ subfamily.authority }}
+            {% endif %} 
+            {% if subfamily.common_name %}
+                – {{ subfamily.common_name }}
+            {% endif %}
+        </h2>
+
+        <p class="empty-subfamily hide">There are no species pages in this subfamily.</p>
+
+        <ul aria-label="Species under subfamily {{ subfamily.name }}" class="taxonomy-list">
+            {% for page in pages | sort(attribute='species.p3') %}
+                {% if page.subfamily.name === subfamily.name %}
+                    <li>
+                        <a href="/orders/{{ family.order.name.toLowerCase() }}/families/{{ family.name.toLowerCase() }}/species/{{ page.title }}">
+                            {% if page.insect_images[0] %}
+                                <img alt="{{ page.insect_images[0].alt_text }}" src="{{ page.insect_images[0].get_image_url }}" />
+                            {% else %}
+                                <img alt="" aria-labelledby="{{ page.get_binomial }}" src="/assets/placeholder.webp" />
+                                <span class="placeholder-label" id="{{ page.get_binomial }}">No image</span>
+                            {% endif %}
+                            <span class="common-name">{{ page.species.common_name }}</span>
+                            <span class="taxon-name"><i>{{ page.get_binomial }}</i></span>
+                            {% if page.species.p3 or page.species.mona %}
+                                <div class="taxon-numbers">
+                                    <span class="p3">P3# {{ page.species.p3 }}</span>
+                                    <span class="mona">MONA# {{ page.species.mona }}</span>
+                                </div>
+                            {% endif %}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+        <a class="back-to-top" href="#main">
+            <picture>
+                <source type="image/webp" srcset="/assets/arrow-top-icon-white-sm.webp">
+                <source type="image/png" srcset="/assets/arrow-top-icon-white-sm.png">
+                <img alt="" />
+            </picture>
+            Back To Top
+        </a>
+    {% endif %}
+{% endfor %}
+
+{% block scripts %}
+    <script src="/js/family.js" type="module"></script>
+    <script src="/js/family.legacy.js" nomodule></script>
+{% endblock %}

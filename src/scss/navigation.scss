@@ -1,4 +1,4 @@
-@use 'colors' as c;
+@use 'utilities/colors' as c;
 
 #nav-container {
     align-items: center;
@@ -184,6 +184,7 @@
                         padding: 0.25rem;
                         position: absolute;
                         top: 2.75rem;
+                        z-index: 1;
 
                         &.hide {
                             display: none;

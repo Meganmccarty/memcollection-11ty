@@ -1,0 +1,77 @@
+---
+pagination:
+    data: pages
+    size: 1
+    alias: page
+    addAllPagesToCollections: true
+eleventyComputed:
+    title: "{{ page.get_binomial }} | MEMC"
+    description: "The detail page for the order {{ page.get_binomial }}"
+layout: layout.njk
+permalink: "/orders/{{ page.order.name.toLowerCase() }}/families/{{ page.family.name.toLowerCase() }}/species/{{ page.title }}"
+---
+{% block css %}
+    <link rel="stylesheet" href="/css/species-pages.css" />
+{% endblock %}
+
+<h1>
+    <i>{{ page.get_binomial }}</i>&nbsp;&nbsp;{{ page.species.authority }} 
+    {% if page.species.common_name %}
+        – {{ page.species.common_name }}
+    {% endif %}
+</h1>
+
+<h2>Taxonomy</h2>
+<ol>
+    <li class="order">Order: <a href="/orders/{{ page.order.name.toLowerCase() }}">{{ page.order.name }}</a> {{ page.order.authority }}</li>
+    <li class="family">Family: <a href="/orders/{{ page.order.name.toLowerCase() }}/families/{{page.family.name.toLowerCase() }}">{{ page.family.name }}</a> {{ page.family.authority }}</li>
+    <li class="subfamily">Subfamily: 
+        {% if '--' not in page.subfamily.name %}
+            <a href="/orders/{{ page.order.name.toLowerCase() }}/families/{{page.family.name.toLowerCase() }}/#{{ page.subfamily.name.toLowerCase() }}">{{ page.subfamily.name }}</a> {{ page.subfamily.authority }}
+        {% else %}
+            <a href="/orders/{{ page.order.name.toLowerCase() }}/families/{{page.family.name.toLowerCase() }}/#incertae-sedis"><i>incertae sedis</i></a>
+        {% endif %}
+    </li>
+    <li class="tribe">Tribe: 
+        {% if '--' not in page.tribe.name %}
+            {{ page.tribe.name }} {{ page.tribe.authority }}
+        {% else %}
+            <i>incertae sedis</i>
+        {% endif %}
+    </li>
+    <li class="genus">Genus: <i>{{ page.genus.name }}</i> {{ page.genus.authority }}</li>
+    <li class="species">
+        Species: <i>{{ page.species.name }}</i> {{ page.species.authority }}
+        {% if page.species.p3 %}
+            <span class="p3">P3# {{ page.species.p3 }}</span>
+        {% endif %}
+        {% if page.species.mona %}
+            <span class="mona">MONA# {{ page.species.mona }}</span>
+        {% endif %}
+    </li>
+    {% if page.species.subspecies.length > 0 %}
+        <li class="subspecies">Subspecies:
+            <ul>
+                {% for subspecies in page.species.subspecies %}
+                    <li>
+                        <i>{{ subspecies.name }}</i> {{ subspecies.authority }} 
+                        {% if subspecies.common_name %}
+                            – {{ subspecies.common_name }}
+                        {% endif %}
+                        {% if subspecies.p3 !== page.species.p3 %}
+                            <span class="p3">P3# {{ subspecies.p3 }}</span>
+                        {% endif %}
+                        {% if subspecies.mona !== page.species.mona %}
+                            <span class="mona">MONA# {{ subspecies.mona }}</span>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endif %}
+</ol>
+
+{% block scripts %}
+    <script src="/js/species-page.js" type="module"></script>
+    <script src="/js/species-page.legacy.js" nomodule></script>
+{% endblock %}

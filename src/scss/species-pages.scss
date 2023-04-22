@@ -1,0 +1,66 @@
+@use 'utilities/colors' as c;
+
+ol {
+    color: c.$off-white;
+    list-style: none;
+    padding: 0 0 0 1.5rem;
+
+    li {
+        border-left: 2px solid white;
+        padding: 0 0 0 0.5rem;
+    }
+
+    li.order {
+        margin: 0.25rem 0;
+    }
+
+    li.family {
+        margin: 0.25rem 0 0.25rem 1rem;
+    }
+
+    li.subfamily {
+        margin: 0.25rem 0 0.25rem 2rem;
+    }
+
+    li.tribe {
+        margin: 0.25rem 0 0.25rem 3rem;
+    }
+
+    li.genus {
+        margin: 0.25rem 0 0.25rem 4rem;
+    }
+
+    li.species {
+        margin: 0.25rem 0 0.25rem 5rem;
+    }
+
+    li.subspecies {
+        margin: 0.25rem 0 0.25rem 6rem;
+
+        ul {
+            list-style: none;
+            padding: 0;
+
+            li {
+                border: none;
+            }
+        }
+    }
+}
+
+.p3,
+.mona {
+    border-radius: 0.25rem;
+    color: c.$off-white;
+    font-size: 0.9rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.p3 {
+    background-color: c.$dark-green-level-3;
+    margin: 0 0 0 0.25rem;
+}
+
+.mona {
+    background-color: c.$medium-pink-level-1;
+}

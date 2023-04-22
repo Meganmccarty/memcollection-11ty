@@ -68,8 +68,8 @@ permalink: "/orders/{{ family.order.name.toLowerCase() }}/families/{{ family.nam
                             {% if page.insect_images[0] %}
                                 <img alt="{{ page.insect_images[0].alt_text }}" src="{{ page.insect_images[0].get_image_url }}" />
                             {% else %}
-                                <img alt="" aria-labelledby="{{ page.get_binomial }}" src="/assets/placeholder.webp" />
-                                <span class="placeholder-label" id="{{ page.get_binomial }}">No image</span>
+                                <img alt="" aria-labelledby="{{ page.genus.name }}-{{ page.species.name }}" src="/assets/placeholder.webp" />
+                                <span class="placeholder-label" id="{{ page.genus.name }}-{{ page.species.name }}">No image</span>
                             {% endif %}
                             <span class="common-name">{{ page.species.common_name }}</span>
                             <span class="taxon-name"><i>{{ page.get_binomial }}</i></span>

@@ -1,5 +1,82 @@
 @use 'utilities/colors' as c;
 
+.image-gallery-container {
+    background-color: c.$off-black;
+    display: flex;
+    max-height: 90vh;
+    margin: 0 1.5rem;
+
+    .active-image {
+        background-color: transparent;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        width: 60%;
+
+        &.fade-in {
+            -webkit-animation: fadeinout 0.5s linear forwards;
+            animation: fadeinout 0.5s linear forwards;
+        }
+
+        figure {
+            margin: 0;
+    
+            img {
+                width: 100%;
+            }
+    
+            figcaption {
+                background-color: c.$off-black;
+                color: c.$off-white;
+                font-size: 0.85rem;
+                margin: 0;
+                padding: 0.25rem 0.5rem;
+            }
+        }
+    }
+
+    .image-thumbnails {
+        align-self: flex-start;
+        display: flex;
+        flex-flow: row wrap;
+        max-height: 90vh;
+        overflow-y: scroll;
+        width: 40%;
+
+        button {
+            background-color: transparent;
+            border: none;
+            margin: 0;
+            padding: 0;
+            width: 33.33%;
+
+            img {
+                margin: 0;
+                height: 100%;
+                width: 100%;
+
+                &:not(.active) {
+                    opacity: 0.70;
+                }
+            }
+
+            &:focus-visible,
+            &:hover {
+                img {
+                    opacity: 1;
+                }
+            }
+
+            &:focus-visible {
+                border: 0.1875rem solid c.$off-white;
+                outline: none;
+            }
+        }
+    }
+}
+
 ol {
     color: c.$off-white;
     list-style: none;
@@ -53,14 +130,67 @@ ol {
     border-radius: 0.25rem;
     color: c.$off-white;
     font-size: 0.9rem;
+    margin: 0 0 0 0.25rem;
     padding: 0.25rem 0.5rem;
 }
 
 .p3 {
     background-color: c.$dark-green-level-3;
-    margin: 0 0 0 0.25rem;
 }
 
 .mona {
     background-color: c.$medium-pink-level-1;
+}
+
+@media all and (max-width: 969px) {
+    .image-gallery-container {
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        max-height: 160vh;
+
+        .active-image {
+            padding: 2rem 0 0 0;
+            width: 90%;
+        }
+
+        .image-thumbnails {
+            max-height: 40vh;
+            width: 100%;
+
+            button {
+                width: 14.2857%;
+            }
+        }
+    }
+}
+
+@media all and (max-width: 700px) {
+    .image-gallery-container {
+        .image-thumbnails {
+            button {
+                width: 20%;
+            }
+        }
+    }
+}
+
+@media all and (max-width: 500px) {
+    .image-gallery-container {
+        .image-thumbnails {
+            button {
+                width: 33.33%;
+            }
+        }
+    }
+}
+
+@-webkit-keyframes fadeinout {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+  
+@keyframes fadeinout {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }

@@ -21,6 +21,27 @@ permalink: "/orders/{{ page.order.name.toLowerCase() }}/families/{{ page.family.
     {% endif %}
 </h1>
 
+{% if page.insect_images.length > 0 %}
+    <h2 id="image-gallery">Image gallery</h2>
+    <div class="image-gallery-container">
+        <button class="active-image fade-in">
+            <figure>
+                <img alt="{{ page.insect_images[0].alt_text }}" class="{{ page.insect_images[0].stage }} {{ page.insect_images[0].sex }} {{ page.insect_images[0].status }}" src="{{ page.insect_images[0].get_image_url }}" />
+                <figcaption>{{ page.insect_images[0].caption }}</figcaption>
+            </figure>
+        </button>
+        <div class="image-thumbnails">
+            {% for image in page.insect_images %}
+                {% if loop.index === 1 %}
+                    <button><img alt="{{ image.alt_text }}" class="active {{ image.stage }} {{ image.sex }} {{ image.status }}" data-caption="{{ image.caption }}" src="{{ image.get_image_url }}" /></button>
+                {% else %}
+                    <button><img alt="{{ image.alt_text }}" class="{{ image.stage }} {{ image.sex }} {{ image.status }}" data-caption="{{ image.caption }}" src="{{ image.get_image_url }}" /></button>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
 <h2>Taxonomy</h2>
 <ol>
     <li class="order">Order: <a href="/orders/{{ page.order.name.toLowerCase() }}">{{ page.order.name }}</a> {{ page.order.authority }}</li>

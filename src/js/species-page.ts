@@ -1,6 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
     const activeImage = document.querySelector('.active-image');
+    // const closeBtn = document.querySelector('dialog button');
     const thumbnailBtns = document.querySelectorAll('.image-thumbnails > button');
+
+    // activeImage?.addEventListener('click', (e) => {
+    //     const [dialog] = document.getElementsByTagName('dialog');
+    //     if (e.target instanceof Element) {
+    //         const parent = e.target.parentElement?.cloneNode(true);
+    //         const figure = closeBtn?.nextElementSibling;
+    //         parent && figure ? figure.appendChild(parent) : null;
+    //         dialog.show();
+    //     }
+    // });
+
+    // closeBtn?.addEventListener('click', () => {
+    //     if (closeBtn.parentElement instanceof HTMLDialogElement) {
+    //         const dialog = closeBtn.parentElement;
+    //         const figureBtn = closeBtn.nextElementSibling;
+
+    //         figureBtn?.addEventListener('click', () => {
+    //             const image = figureBtn.querySelector('img');
+    //             image?.classList.toggle('zoom-in');
+    //         })
+            
+    //         dialog.close();
+            
+    //         if (figureBtn) {
+    //             const figure = figureBtn.querySelector('figure');
+    //             figure ? figureBtn.removeChild(figure) : null;
+    //         }
+    //     }
+    // })
 
     thumbnailBtns.forEach((thumbnail) => {
         thumbnail.addEventListener('click', () => {
@@ -43,6 +73,6 @@ export function setActiveImageClass(thumbnails: NodeListOf<Element>, activeThumb
 
 export function triggerFadeAnimation(activeImage: Element) {
     activeImage.classList.remove('fade-in');
-    void activeImage.parentElement?.offsetWidth;
+    activeImage instanceof HTMLElement ? void activeImage.offsetWidth : null;
     activeImage.classList.add('fade-in');
 }

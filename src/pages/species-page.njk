@@ -24,12 +24,10 @@ permalink: "/orders/{{ page.order.name.toLowerCase() }}/families/{{ page.family.
 {% if page.insect_images.length > 0 %}
     <h2 id="image-gallery">Image gallery</h2>
     <div class="image-gallery-container">
-        <button class="active-image fade-in">
-            <figure>
-                <img alt="{{ page.insect_images[0].alt_text }}" class="{{ page.insect_images[0].stage }} {{ page.insect_images[0].sex }} {{ page.insect_images[0].status }}" src="{{ page.insect_images[0].get_image_url }}" />
-                <figcaption>{{ page.insect_images[0].caption }}</figcaption>
-            </figure>
-        </button>
+        <figure class="active-image fade-in">
+            <img alt="{{ page.insect_images[0].alt_text }}" class="{{ page.insect_images[0].stage }} {{ page.insect_images[0].sex }} {{ page.insect_images[0].status }}" src="{{ page.insect_images[0].get_image_url }}" />
+            <figcaption>{{ page.insect_images[0].caption | safe }}</figcaption>
+        </figure>
         <div class="image-thumbnails">
             {% for image in page.insect_images %}
                 {% if loop.index === 1 %}
@@ -91,6 +89,51 @@ permalink: "/orders/{{ page.order.name.toLowerCase() }}/families/{{ page.family.
         </li>
     {% endif %}
 </ol>
+
+{% if page.taxonomy %}
+    {{ page.taxonomy | safe }}
+{% endif %}
+
+{% if page.description %}
+    <h2>Description</h2>
+    {{ page.description | safe }}
+{% endif %}
+
+{% if page.distribution %}
+    <h2>Distribution</h2>
+    {{ page.distribution | safe }}
+{% endif %}
+
+{% if page.seasonality %}
+    <h2>Seasonality</h2>
+    {{ page.seasonality | safe }}
+{% endif %}
+
+{% if page.habitat %}
+    <h2>Habitat</h2>
+    {{ page.habitat | safe }}
+{% endif %}
+
+{% if page.food %}
+    <h2>Food</h2>
+    {{ page.food | safe }}
+{% endif %}
+
+{% if page.life_cycle %}
+    <h2>Life Cycle</h2>
+    {{ page.life_cycle | safe }}
+{% endif %}
+
+{% if page.display_refs %}
+    <h2>References</h2>
+    {{ page.display_refs | safe }}
+{% endif %}
+
+
+{# <dialog id="full-image">
+    <button>Close</button>
+    <button></button>
+</dialog> #}
 
 {% block scripts %}
     <script src="/js/species-page.js" type="module"></script>

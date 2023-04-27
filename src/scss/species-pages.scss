@@ -5,6 +5,7 @@
     display: flex;
     max-height: 90vh;
     margin: 0 1.5rem;
+    max-width: 78.125rem;
 
     .active-image {
         background-color: transparent;
@@ -16,24 +17,20 @@
         width: 60%;
 
         &.fade-in {
-            -webkit-animation: fadeinout 0.5s linear forwards;
-            animation: fadeinout 0.5s linear forwards;
+            -webkit-animation: fadein 0.5s linear forwards;
+            animation: fadein 0.5s linear forwards;
         }
 
-        figure {
+        img {
+            width: 100%;
+        }
+
+        figcaption {
+            background-color: c.$off-black;
+            color: c.$off-white;
+            font-size: 0.85rem;
             margin: 0;
-    
-            img {
-                width: 100%;
-            }
-    
-            figcaption {
-                background-color: c.$off-black;
-                color: c.$off-white;
-                font-size: 0.85rem;
-                margin: 0;
-                padding: 0.25rem 0.5rem;
-            }
+            padding: 0.25rem 0.5rem;
         }
     }
 
@@ -76,6 +73,58 @@
         }
     }
 }
+
+// #full-image {
+//     align-items: flex-end;
+//     background-color: c.$off-black;
+//     display: none;
+//     flex-direction: column;
+//     justify-content: center;
+//     left: 0;
+//     max-height: 100vh;
+//     min-height: 100vh;
+//     position: fixed;
+//     top: 0;
+//     z-index: 5;
+
+//     &[open] {
+//         display: flex;
+//     }
+
+//     button {
+//         background-color: transparent;
+//         border: none;
+//         color: c.$off-white;
+//     }
+
+//     figure {
+//         align-items: center;
+//         display: flex;
+//         flex-direction: column;
+//         margin: 0;
+//         padding: 0;
+
+//         img {
+//             max-height: 90vh;
+//             width: 95%;
+//             transition: transform 0.25s ease;
+//             cursor: zoom-in;
+
+//             &.zoom-in {
+//                 transform: scale(2);
+//                 cursor: zoom-out;
+//             }
+//         }
+
+//         figcaption {
+//             background-color: c.$off-black;
+//             color: c.$off-white;
+//             font-size: 0.85rem;
+//             margin: 0;
+//             padding: 0.25rem 0.5rem;
+//         }
+//     }
+// }
 
 ol {
     color: c.$off-white;
@@ -155,7 +204,10 @@ ol {
         }
 
         .image-thumbnails {
+            flex-flow: row nowrap;
             max-height: 40vh;
+            overflow-x: scroll;
+            overflow-y: hidden;
             width: 100%;
 
             button {
@@ -185,12 +237,12 @@ ol {
     }
 }
 
-@-webkit-keyframes fadeinout {
+@-webkit-keyframes fadein {
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
   
-@keyframes fadeinout {
+@keyframes fadein {
     0% { opacity: 0; }
     100% { opacity: 1; }
 }

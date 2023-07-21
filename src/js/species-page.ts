@@ -37,6 +37,7 @@ export function setActiveImageClass(thumbnails: NodeListOf<Element>, activeThumb
 export function triggerFadeAnimation(activeImage: Element) {
     activeImage.classList.remove('fade-in');
     if (activeImage instanceof HTMLElement) {
+        /* eslint-disable @typescript-eslint/no-unused-expressions */
         activeImage.offsetWidth;
     }
     activeImage.classList.add('fade-in');

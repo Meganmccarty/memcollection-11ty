@@ -11,6 +11,7 @@ body {
 
 main {
     min-height: 100vh;
+    padding: 0;
 
     #overlay {
         background-color: c.$black;
@@ -78,4 +79,28 @@ footer {
 
 .hide {
     display: none;
+}
+
+@media (min-width: 1300px) {
+    main {
+        padding: 0 5rem;
+    }
+}
+
+@media (min-width: 1460px) {
+    main {
+        padding: 0 10rem;
+    }
+}
+
+@media (min-width: 1620px) {
+    main {
+        padding: 0 15rem;
+    }
+}
+
+@media (min-width: 1780px) {
+    main {
+        padding: 0 20rem;
+    }
 }

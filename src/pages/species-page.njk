@@ -1,0 +1,141 @@
+---
+pagination:
+    data: pages
+    size: 1
+    alias: page
+    addAllPagesToCollections: true
+eleventyComputed:
+    title: "{{ page.get_binomial }} | MEMC"
+    description: "The detail page for the order {{ page.get_binomial }}"
+layout: layout.njk
+permalink: "/orders/{{ page.order.name.toLowerCase() }}/families/{{ page.family.name.toLowerCase() }}/species/{{ page.title }}"
+---
+{% block css %}
+    <link rel="stylesheet" href="/css/species-pages.css" />
+{% endblock %}
+
+<h1>
+    <i>{{ page.get_binomial }}</i>&nbsp;&nbsp;{{ page.species.authority }} 
+    {% if page.species.common_name %}
+        – {{ page.species.common_name }}
+    {% endif %}
+</h1>
+
+{% if page.insect_images.length > 0 %}
+    <h2 id="image-gallery">Image gallery</h2>
+    <div class="image-gallery-container">
+        <figure class="active-image fade-in">
+            <img alt="{{ page.insect_images[0].alt_text }}" class="{{ page.insect_images[0].stage }} {{ page.insect_images[0].sex }} {{ page.insect_images[0].status }}" src="{{ page.insect_images[0].get_image_url }}" />
+            <figcaption>{{ page.insect_images[0].caption | safe }}</figcaption>
+        </figure>
+        <div class="image-thumbnails">
+            {% for image in page.insect_images %}
+                {% if loop.index === 1 %}
+                    <button><img alt="{{ image.alt_text }}" class="active {{ image.stage }} {{ image.sex }} {{ image.status }}" data-caption="{{ image.caption }}" src="{{ image.get_image_url }}" /></button>
+                {% else %}
+                    <button><img alt="{{ image.alt_text }}" class="{{ image.stage }} {{ image.sex }} {{ image.status }}" data-caption="{{ image.caption }}" src="{{ image.get_image_url }}" /></button>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+<h2>Taxonomy</h2>
+<ol>
+    <li class="order">Order: <a href="/orders/{{ page.order.name.toLowerCase() }}">{{ page.order.name }}</a> {{ page.order.authority }}</li>
+    <li class="family">Family: <a href="/orders/{{ page.order.name.toLowerCase() }}/families/{{page.family.name.toLowerCase() }}">{{ page.family.name }}</a> {{ page.family.authority }}</li>
+    <li class="subfamily">Subfamily: 
+        {% if '--' not in page.subfamily.name %}
+            <a href="/orders/{{ page.order.name.toLowerCase() }}/families/{{page.family.name.toLowerCase() }}/#{{ page.subfamily.name.toLowerCase() }}">{{ page.subfamily.name }}</a> {{ page.subfamily.authority }}
+        {% else %}
+            <a href="/orders/{{ page.order.name.toLowerCase() }}/families/{{page.family.name.toLowerCase() }}/#incertae-sedis"><i>incertae sedis</i></a>
+        {% endif %}
+    </li>
+    <li class="tribe">Tribe: 
+        {% if '--' not in page.tribe.name %}
+            {{ page.tribe.name }} {{ page.tribe.authority }}
+        {% else %}
+            <i>incertae sedis</i>
+        {% endif %}
+    </li>
+    <li class="genus">Genus: <i>{{ page.genus.name }}</i> {{ page.genus.authority }}</li>
+    <li class="species">
+        Species: <i>{{ page.species.name }}</i> {{ page.species.authority }}
+        {% if page.species.p3 %}
+            <span class="p3">P3# {{ page.species.p3 }}</span>
+        {% endif %}
+        {% if page.species.mona %}
+            <span class="mona">MONA# {{ page.species.mona }}</span>
+        {% endif %}
+    </li>
+    {% if page.species.subspecies.length > 0 %}
+        <li class="subspecies">Subspecies:
+            <ul>
+                {% for subspecies in page.species.subspecies %}
+                    <li>
+                        <i>{{ subspecies.name }}</i> {{ subspecies.authority }} 
+                        {% if subspecies.common_name %}
+                            – {{ subspecies.common_name }}
+                        {% endif %}
+                        {% if subspecies.p3 !== page.species.p3 %}
+                            <span class="p3">P3# {{ subspecies.p3 }}</span>
+                        {% endif %}
+                        {% if subspecies.mona !== page.species.mona %}
+                            <span class="mona">MONA# {{ subspecies.mona }}</span>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endif %}
+</ol>
+
+{% if page.taxonomy %}
+    {{ page.taxonomy | safe }}
+{% endif %}
+
+{% if page.description %}
+    <h2>Description</h2>
+    {{ page.description | safe }}
+{% endif %}
+
+{% if page.distribution %}
+    <h2>Distribution</h2>
+    {{ page.distribution | safe }}
+{% endif %}
+
+{% if page.seasonality %}
+    <h2>Seasonality</h2>
+    {{ page.seasonality | safe }}
+{% endif %}
+
+{% if page.habitat %}
+    <h2>Habitat</h2>
+    {{ page.habitat | safe }}
+{% endif %}
+
+{% if page.food %}
+    <h2>Food</h2>
+    {{ page.food | safe }}
+{% endif %}
+
+{% if page.life_cycle %}
+    <h2>Life Cycle</h2>
+    {{ page.life_cycle | safe }}
+{% endif %}
+
+{% if page.display_refs %}
+    <h2>References</h2>
+    {{ page.display_refs | safe }}
+{% endif %}
+
+
+{# <dialog id="full-image">
+    <button>Close</button>
+    <button></button>
+</dialog> #}
+
+{% block scripts %}
+    <script src="/js/species-page.js" type="module"></script>
+    <script src="/js/species-page.legacy.js" nomodule></script>
+{% endblock %}

@@ -27,7 +27,7 @@ permalink: "/orders/{{ family.order.name.toLowerCase() }}/families/{{ family.nam
         {% for subfamily in subfamilies %}
             {% if subfamily.family.name === family.name %}
                 <li>
-                    <a href="#{{ subfamily.name }}">
+                    <a href="#{% if '--' not in subfamily.name %}{{ subfamily.name.toLowerCase() }}{% else %}incertae-sedis{% endif %}">
                         {% if '--' in subfamily.name %}
                             <i>Incertae sedis</i>
                         {% else %}
@@ -44,13 +44,13 @@ permalink: "/orders/{{ family.order.name.toLowerCase() }}/families/{{ family.nam
 
 {% for subfamily in subfamilies %}
     {% if subfamily.family.name === family.name %}
-        <h2 id="{{ subfamily.name }}">
+        <h2 id="{% if '--' not in subfamily.name %}{{ subfamily.name.toLowerCase() }}{% else %}incertae-sedis{% endif %}">
             {% if '--' in subfamily.name %}
                 <i>Incertae sedis</i>
             {% else %}
                 {{ subfamily.name }}
             {%endif %} 
-            {% if '--' not in subfamily.authority%}
+            {% if '--' not in subfamily.authority %}
                 {{ subfamily.authority }}
             {% endif %} 
             {% if subfamily.common_name %}

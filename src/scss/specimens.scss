@@ -1,0 +1,300 @@
+@use 'utilities/colors' as c;
+
+form.filters {
+    background-color: c.$dark-gray-level-2;
+    display: flex;
+    flex-direction: column;
+    margin: 0 1.25rem 0.75rem;
+    padding: 1rem;
+
+    .inputs-container {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        label {
+            color: c.$white;
+            width: 30%;
+
+            input {
+                background-color: c.$white;
+                border: none;
+                border-radius: 0.25rem;
+                box-sizing: border-box;
+                color: c.$black;
+                font-size: 0.875rem;
+                height: 1.875rem;
+                line-height: 1.5rem;
+                margin: 0.5rem 0 0;
+                outline: none;
+                width: 100%;
+
+                &:focus-visible {
+                    outline: 0.125rem solid c.$medium-green-level-3;
+                    outline-offset: 0.125rem;
+                }
+            }
+        }
+    }
+
+    .checkboxes-container {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin: 1.5rem 0 0;
+
+        label {
+            align-items: center;
+            color: c.$white;
+            display: flex;
+            margin: 0 1.5rem 0 0;
+            max-width: 12.5rem;
+            width: 30%;
+
+            span {
+                width: fit-content;
+            }
+
+            input[type='checkbox'] {
+                accent-color: c.$medium-green-level-3;
+                background-color: c.$white;
+                border: none;
+                box-sizing: border-box;
+                color: c.$black;
+                font-size: 0.875rem;
+                height: 1.5rem;
+                line-height: 1.5rem;
+                margin: 0 0 0 0.5rem;
+                min-width: 1.25rem;
+                outline: none;
+                width: 10%;
+
+                &:hover {
+                    accent-color: c.$medium-green-level-2;
+                }
+
+                &:focus-visible {
+                    outline: 0.125rem solid c.$medium-green-level-3;
+                    outline-offset: 0.125rem;
+                }
+            }
+        }
+    }
+
+    #loader {
+        margin: 1rem 0 0 auto;
+    }
+
+    button.filter-button {
+        background-color: c.$medium-green-level-3;
+        border: none;
+        color: c.$off-black;
+        font-size: 1rem;
+        margin: 1rem 0 0 auto;
+        padding: 0.375rem 0.625rem;
+        width: 5rem;
+
+        &:focus-visible,
+        &:hover {
+            background-color: c.$light-green-level-2;
+            color: c.$off-black;
+        }
+
+        &:focus-visible {
+            outline: c.$light-green-level-1 solid 0.125rem;
+            outline-offset: 0.125rem;
+        }
+    }
+}
+
+table {
+    background-color: c.$dark-gray-level-1;
+    border: 0.0625rem solid c.$light-green-level-2;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: white;
+    min-width: 56.25rem;
+    width: 100%;
+
+    .italics {
+        font-style: italic;
+    }
+
+    th,
+    td {
+        font-size: 0.875rem;
+        padding: 0.125rem 0.25rem;
+        text-align: left;
+    }
+
+    th {
+        background-color: rgb(4 120 87);
+        padding: 0.5rem 0;
+
+        button.header-button {
+            align-items: center;
+            background-color: transparent;
+            border: none;
+            color: c.$white;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+
+            &:focus-visible {
+                outline: c.$medium-green-level-3 solid 0.25rem;
+            }
+
+            img {
+                width: 1rem;
+            }
+        }
+    }
+
+    th[data-attribute='usi'],
+    th[data-attribute='taxon'],
+    th[data-attribute='common_name'] {
+        min-width: 9.375rem; // 150px
+        width: 16.67%;
+    }
+
+    th[data-attribute='country'],
+    th[data-attribute='date'] {
+        min-width: 5rem; // 80px
+        width: 8.89%;
+    }
+
+    th[data-attribute='state'] {
+        min-width: 6.25rem; // 100px
+        width: 11.11%;
+    }
+
+    th[data-attribute='locality'] {
+        min-width: 11.875rem; // 190px
+        width: 21.1%;
+    }
+
+    tbody {
+        tr:nth-child(even) {
+            background-color: c.$dark-gray-level-2;
+        }
+    }
+}
+
+#map-and-loader {
+    position: relative;
+
+    #loader {
+        align-items: center;
+        background-color: rgb(0 0 0 / 90%);
+        color: white;
+        display: flex;
+        font-size: 1.5rem;
+        height: 5rem;
+        justify-content: center;
+        margin: 0 calc(50% - (12.5rem / 2));
+        position: absolute;
+        top: calc(40vh - (5rem / 2));
+        width: 12.5rem;
+        z-index: 1000;
+
+        &.hide {
+            display: none;
+        }
+    }
+}
+
+section#map {
+    height: 80vh;
+    margin: 0 1.25rem;
+    z-index: 0;
+
+    #reset-map-button {
+        background-clip: padding-box;
+        background-color: white;
+        border: 0.125rem solid rgba(0 0 0 / 20%);
+        border-radius: 0.25rem;
+        bottom: 0.625rem;
+        color: black;
+        left: 0.625rem;
+        padding: 0.5rem;
+        position: absolute;
+        z-index: 500;
+    }
+
+    #legend {
+        align-items: center;
+        background-clip: padding-box;
+        background-color: white;
+        border: 0.125rem solid rgba(0 0 0 / 20%);
+        border-radius: 0.25rem;
+        bottom: 0.625rem;
+        display: flex;
+        flex-direction: row;
+        height: 2rem;
+        left: 6.5625rem;
+        padding: 0 0.75rem 0 0.25rem;
+        position: absolute;
+        z-index: 500;
+
+        img {
+            height: 1.5rem;
+            margin: 0 0.25rem 0 0.75rem;
+        }
+    }
+}
+
+div.table-container {
+    overflow: scroll;
+    padding: 1.25rem;
+}
+
+@media (max-width: 785px) {
+    section#map {
+        #reset-map-button {
+            height: 2.25rem;
+            left: 3.5rem;
+            top: 0.625rem;
+        }
+
+        #legend {
+            left: 9.5rem;
+            top: 0.625rem;
+        }
+    }
+}
+
+@media (max-width: 599px) {
+    form.filters {
+        .inputs-container {
+            flex-direction: column;
+
+            label {
+                margin: 0 0 0.5rem;
+                width: 100%;
+            }
+        }
+
+        .checkboxes-container {
+            label {
+                width: 50%;
+            }
+        }
+    }
+}
+
+@media (max-width: 460px) {
+    section#map {
+        #legend {
+            flex-direction: column;
+            height: fit-content;
+            padding: 0.5rem;
+
+            img {
+                margin: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,21 @@
+---
+pagination:
+    data: specimens
+    size: 1
+    alias: specimen
+    addAllPagesToCollections: true
+eleventyComputed:
+    title: "{{ specimen.usi }} | MEMC"
+    description: "The detail page for the specimen {{ specimen.usi }}"
+layout: layout.njk
+permalink: "/specimens/{{ specimen.usi.toLowerCase() }}"
+tag: specimenPage
+---
+
+{% block css %}
+    <link rel="stylesheet" href="/css/specimen-page.css" />
+{% endblock %}
+
+<h1>
+    {{ specimen.usi }}
+</h1>

@@ -1,0 +1,24 @@
+---
+permalink: "/specimens-data.js"
+---
+[
+    {% for specimen in specimens %}{ 
+        "usi": "{{ specimen.usi }}",
+        "taxon": "{{ specimen.taxon_json.name }}",
+        "italics": {% if specimen.genus.name %}true,{% else %}false,{% endif %}
+        "identified": {% if specimen.species.name %}true,{% else %}false,{% endif %}
+        "common_name": "{{ specimen.taxon_json.common_name }}",
+        "country": "{{ specimen.country.abbr }}",
+        "state": "{{ specimen.state.name }}",
+        "state_abbr": "{{ specimen.state.abbr }}",
+        "locality": "{{ specimen.locality.name }}",{% if specimen.gps.latitude %}
+        "gps": {
+            "lat": {{ specimen.gps.latitude }},
+            "long": {{ specimen.gps.longitude }},
+            "elevation": "{{ specimen.gps.elevation }}m"
+        },{% endif %}
+        "date": "{{ specimen.num_date }}",
+        "full_date": "{{ specimen.full_date }}"
+    }{% if loop.last == false %},{% endif %}
+    {% endfor %}
+]

@@ -8,7 +8,7 @@ eleventyComputed:
     title: "{{ page.get_binomial }} | MEMC"
     description: "The detail page for the order {{ page.get_binomial }}"
 layout: layout.njk
-permalink: "/orders/{{ page.order.name.toLowerCase() }}/families/{{ page.family.name.toLowerCase() }}/species/{{ page.title }}"
+permalink: "/orders/{{ page.order.name.toLowerCase() }}/families/{{ page.family.name.toLowerCase() }}/species/{{ page.title }}/"
 ---
 {% block css %}
     <link rel="stylesheet" href="/css/species-pages.css" />

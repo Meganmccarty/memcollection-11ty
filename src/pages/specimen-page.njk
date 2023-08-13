@@ -14,8 +14,208 @@ tag: specimenPage
 
 {% block css %}
     <link rel="stylesheet" href="/css/specimen-page.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
 {% endblock %}
 
 <h1>
-    {{ specimen.usi }}
+    {{ specimen.usi }}: 
+    {% if specimen.taxon_json.common_name %}{{ specimen.taxon_json.common_name }} {% endif %} 
+    {% if specimen.subspecies or specimen.species %}
+        (<i><a href="/orders/{{ specimen.order.name.toLowerCase() }}/families/{{ specimen.family.name.toLowerCase() }}/species/{{ specimen.genus.name.toLowerCase() }}-{{ specimen.species.name.toLowerCase() }}">{{ specimen.taxon_json.name }}</a></i>)
+    {% elif specimen.genus %}
+        (<i>{{ specimen.taxon_json.name }}</i>)
+    {% else %}
+        ({{ specimen.taxon_json.name }})
+    {% endif %}
 </h1>
+
+{% if specimen.images.length > 0 %}
+
+<div id="image-container">
+    {% for image in specimen.images %}
+        <img alt="{{ image.position }} view" src="{{ image.get_image_url }}" />
+    {% endfor %}
+</div>
+
+{% endif %}
+
+<h2>Specimen Details</h2>
+
+<div id="specimen-details-container">
+    <table aria-labelledby="specimen-info">
+        <caption hidden id="specimen-info">Specimen Information</caption>
+        <tr>
+            <th>Specimen Number</th>
+            <td>{{ specimen.usi }}</td>
+        </tr>
+        <tr>
+            <th>Taxon</th>
+            {% if specimen.subspecies or specimen.species %}
+                <td class="italics" id="taxon"><a href="/orders/{{ specimen.order.name.toLowerCase() }}/families/{{ specimen.family.name.toLowerCase() }}/species/{{ specimen.genus.name.toLowerCase() }}-{{ specimen.species.name.toLowerCase() }}">{{ specimen.taxon_json.name }}</a></td>
+            {% elif specimen.genus %}
+                <td class="italics" id="taxon">{{ specimen.taxon_json.name }}</td>
+            {% else %}
+                <td id="taxon">{{ specimen.taxon_json.name }}</td>
+            {% endif %}
+        </tr>
+        {% if specimen.taxon_json.common_name %}
+        <tr>
+            <th>Common Name</th>
+            <td>{{ specimen.taxon_json.common_name }}</td>
+        </tr>
+        {% endif %}
+        {% if specimen.taxon_json.p3 %}
+        <tr>
+            <th>P3 Number</th>
+            <td>{{ specimen.taxon_json.p3 }}</td>
+        </tr>
+        {% endif %}
+        {% if specimen.taxon_json.mona %}
+        <tr>
+            <th>MONA Number</th>
+            <td>{{ specimen.taxon_json.mona }}</td>
+        </tr>
+        {% endif %}
+        {% if specimen.display_determiner %}
+        <tr>
+            <th>Determiner</th>
+            <td>{{ specimen.display_determiner }}</td>
+        </tr>
+        {% endif %}
+        {% if specimen.determined_year %}
+        <tr>
+            <th>Determined Year</th>
+            <td>{{ specimen.determined_year }}</td>
+        </tr>
+        {% endif %}
+        <tr>
+            <th>Sex</th>
+            <td>{{ specimen.sex }}</td>
+        </tr>
+        <tr>
+            <th>Stage</th>
+            <td>{{ specimen.stage }}</td>
+        </tr>
+        <tr>
+            <th>Preparation Type</th>
+            <td>{{ specimen.preparation }}</td>
+        </tr>
+        {% if specimen.preparation_date %}
+        <tr>
+            <th>Preparation Date</th>
+            <td>{{ specimen.preparation_date }}</td>
+        </tr>
+        {% endif %}
+        <tr>
+            <th>Preparer</th>
+            <td>{{ specimen.display_preparer }}</td>
+        </tr>
+    </table>
+    <table aria-labelledby="collecting-event-info">
+        <caption hidden id="collecting-event-info">Collecting Event Information</caption>
+        {% if specimen.country %}
+        <tr>
+            <th>Country</th>
+            <td>{{ specimen.country.name }}</td>
+        </tr>
+        {% endif %}
+        {% if specimen.state %}
+        <tr>
+            <th>State</th>
+            <td>{{ specimen.state.name }}</td>
+        </tr>
+        {% endif %}
+        {% if specimen.county %}
+        <tr>
+            <th>County</th>
+            <td>{{ specimen.county.name }}</td>
+        </tr>
+        {% endif %}
+        {% if specimen.locality %}
+        <tr>
+            <th>Nearest Town</th>
+            <td>{{ specimen.locality.range }} {{ specimen.locality.town }}</td>
+        </tr>
+        {% endif %}
+        {% if specimen.locality %}
+        <tr>
+            <th>Locality</th>
+            <td>{{ specimen.locality.name }}</td>
+        </tr>
+        {% endif %}
+        {% if specimen.gps and specimen.gps.latitude %}
+        <tr>
+            <th>GPS</th>
+            <td id="gps-coordinates">{{ specimen.gps.latitude }} {{ specimen.gps.longitude }}</td>
+        </tr>
+        {% endif %}
+        {% if specimen.gps and specimen.gps.elevation %}
+        <tr>
+            <th>Elevation (meters)</th>
+            <td>{{ specimen.gps.elevation }}</td>
+        </tr>
+        {% endif %}
+        <tr>
+            <th>Date</th>
+            <td>{{ specimen.full_date }}</td>
+        </tr>
+        <tr>
+            <th>Collector(s)</th>
+            <td>{{ specimen.display_collectors }}</td>
+        </tr>
+        {% if specimen.method %}
+        <tr>
+            <th>Method</th>
+            <td>{{ specimen.method }}</td>
+        </tr>
+        {% endif %}
+        {% if specimen.weather %}
+        <tr>
+            <th>Weather</th>
+            <td>{{ specimen.weather }}</td>
+        </tr>
+        {% endif %}
+        {% if specimen.temp_F %}
+        <tr>
+            <th>Temperature</th>
+            <td>{{ specimen.temp_C }} / {{ specimen.temp_F }}</td>
+        </tr>
+        {% endif %}
+        {% if specimen.time_of_day %}
+        <tr>
+            <th>Time of day</th>
+            <td>{{ specimen.time_of_day }}</td>
+        </tr>
+        {% endif %}
+        {% if specimen.habitat %}
+        <tr>
+            <th>Habitat</th>
+            <td>{{ specimen.habitat | safe }}</td>
+        </tr>
+        {% endif %}
+        {% if specimen.notes %}
+        <tr>
+            <th>Notes</th>
+            <td>{{ specimen.notes | safe }}</td>
+        </tr>
+        {% endif %}
+    </table>
+</div>
+
+<h2>Map</h2>
+
+<section aria-labelledby="map-label" id="specimen-map">
+    <button id="reset-map-button">Reset Map</button>
+    <section aria-labelledby="map-legend" id="legend">
+        <span hidden id="map-legend">Specimen Map Legend</span>
+        <img alt="" src="/assets/map-pin-icon-blue.svg" /><span>Identified</span>
+        <img alt="" src="/assets/map-pin-icon-pink.svg" /><span>Unidentified</span>
+    </section>
+</section>
+
+{% block scripts %}
+    <script src="/js/specimen-page.js" type="module"></script>
+    <script src="/js/specimen-page.legacy.js" nomodule></script>
+{% endblock %}

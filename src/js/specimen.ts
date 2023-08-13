@@ -80,7 +80,7 @@ export function getSpecimensWithGPS(specimens: Specimen[]): Specimen[] {
             <br>
             ${specimen.gps.lat} ${specimen.gps.long} ${specimen.gps.elevation}
             <br>
-            ${specimen.date} <a href="/specimens/${specimen.usi}">${specimen.usi}</a>`);
+            ${specimen.date} <a href="/specimens/${specimen.usi.toLowerCase()}">${specimen.usi}</a>`);
 
         // Add the newly-created marker to the markerGroup layer
         // (Makes it easy to clear the layer whenever specimens are filtered)
@@ -423,12 +423,13 @@ export function configureTableHeaders(
  * Sets up the Leaflet map that will display the specimen markers
  * @returns - The newly-created Leaflet map
  */
-export function initializeLeafletMap(): L.Map {
+export function initializeLeafletMap(lat: number, long: number, zoom: number): L.Map {
     // Create the Leaflet map and set its default position and zoom
     const map = L.map(
         'map',
         { scrollWheelZoom: false },
-    ).setView([50.000, -104.180], 3);
+    ).setView([lat, long], zoom);
+    // ).setView([50.000, -104.180], 3);
 
     // Set up the default tile layer (street view)
     const streetView = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -475,7 +476,7 @@ export function initializeLeafletMap(): L.Map {
     // Create and add a reset button to the Leaflet map
     const resetMapBtn = document.getElementById('reset-map-button');
     resetMapBtn?.addEventListener('click', () => {
-        map.setView([50.000, -104.180], 3);
+        map.setView([lat, long], zoom);
     });
 
     return map;
@@ -557,7 +558,7 @@ export function filterSpecimensInMapAndTable(
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Initialize a Leaflet map
-    const map = initializeLeafletMap();
+    const map = initializeLeafletMap(50.000, -104.180, 3);
     // Create a layerGroup for the markers (so that they can be cleared when filters are applied)
     const markers = L.layerGroup().addTo(map);
 

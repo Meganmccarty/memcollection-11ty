@@ -46,7 +46,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
     "@babel/core": "^7.22.9",
-    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-env": "^7.22.10",
     "@babel/preset-typescript": "^7.18.6",
     "@types/jest": "^29.2.6",
     "@types/leaflet": "^1.9.3",

@@ -97,6 +97,7 @@
 #label-output {
     align-items: flex-start;
     background-color: white;
+    color: black;
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
@@ -107,6 +108,11 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+
+        p {
+            color: c.$black;
+            margin: 0;
+        }
 
         .label-locality,
         .label-notes,
@@ -149,6 +155,10 @@
         .label-notes p,
         .label-taxonomy span {
             text-align: center;
+        }
+
+        .label-usi {
+            text-align: right;
         }
     }
 }

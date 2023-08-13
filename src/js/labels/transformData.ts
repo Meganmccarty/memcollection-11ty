@@ -3,8 +3,8 @@ export function transformData(data: Array<object>) {
         <div class="single-label">
             <div class="label-locality">
                 <span>
-                    ${label.country ? label.country.abbr : ''}
-                    ${label.state ? label.state.abbr : ''}
+                    ${label.country ? `${label.country.abbr}:` : ''}
+                    ${label.state ? `${label.state.abbr}:` : ''}
                     ${label.county ? label.county.county_abbr : ''}
                 </span>
                 <span>
@@ -22,7 +22,7 @@ export function transformData(data: Array<object>) {
                 <span>
                     ${label.collected_date} ${label.display_collectors}
                 </span>
-                <span>
+                <span class="label-usi">
                     ${label.usi}
                 </span>
             </div>
@@ -42,7 +42,7 @@ export function transformData(data: Array<object>) {
                 ${label.taxon_json.name
                     ? `
                         <span>
-                            ${label.genus.name
+                            ${label.genus
                                 ? `<i>${label.taxon_json.name}</i>`
                                 : label.taxon_json.name}
                         </span>

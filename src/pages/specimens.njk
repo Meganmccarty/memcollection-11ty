@@ -3,6 +3,137 @@ title: Specimens | MEMC
 description: The specimens page for the MEM Collection site.
 layout: layout.njk
 ---
+{% block css %}
+    <link rel="stylesheet" href="/css/specimens.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+{% endblock %}
 
 <h1>Specimens</h1>
-<p>This page is currently under construction.</p>
+
+<h2 id="filters-label">Filter by:</h2>
+<form aria-labelledby"filters-label" class="filters">
+    <div class="inputs-container">
+        <label>
+            Species
+            <input id="species-input" placeholder="'Speyeria' or 'Mormon Fritillary'" />
+        </label>
+        <label>
+            State
+            <input id="state-input" placeholder="'Arizona' or 'AZ'" />
+        </label>
+        <label>
+            Date
+            <input id="date-input" placeholder="'2021-08-26' or 'August 2021' or 'August'" />
+        </label>
+    </div>
+    <div class="checkboxes-container">
+        <label>
+            <span>Identified to species</span>
+            <input checked id="id-input" type="checkbox" />
+        </label>
+        <label>
+            <span>Unidentified to species</span>
+            <input checked id="unid-input" type="checkbox" />
+        </label>
+    </div>
+    <button class="filter-button" type="submit">Update</button>
+</form>
+
+<h2 id="map-label">Map: <span id="specimen-count-gps"></span></h2>
+<div id="map-and-loader">
+    <div id="loader">
+        Loading...
+    </div>
+    <section aria-labelledby="map-label" id="map">
+        <button id="reset-map-button">Reset Map</button>
+        <section aria-labelledby="map-legend" id="legend">
+            <span hidden id="map-legend">Specimen Map Legend</span>
+            <img alt="" src="/assets/map-pin-icon-blue.svg" /><span>Identified</span>
+            <img alt="" src="/assets/map-pin-icon-pink.svg" /><span>Unidentified</span>
+        </section>
+    </section>
+</div>
+
+<h2>Table: <span id="specimen-count-all">{{ specimens.length }} specimens</span></h2>
+<div class="table-container">
+    <table aria-labelledby="table-caption" role="table">
+        <caption hidden id="table-caption">Specimens in collection: <span id="specimen-count">{{ specimens.length }}</span></caption>
+        <thead>
+            <tr>
+                <th aria-sort="ascending" data-attribute="usi">
+                    <button class="header-button">
+                        Specimen Number
+                        <img alt="" class="asc" src="/assets/line-angle-up-icon.svg" />
+                        <img alt="" class="desc" hidden src="/assets/line-angle-down-icon.svg" />
+                    </button>
+                </th>
+                <th data-attribute="taxon">
+                    <button class="header-button">
+                        Taxon
+                        <img alt="" class="asc" hidden src="/assets/line-angle-up-icon.svg" />
+                        <img alt="" class="desc" hidden src="/assets/line-angle-down-icon.svg" />
+                    </button>
+                </th>
+                <th data-attribute="common_name">
+                    <button class="header-button">
+                        Common Name
+                        <img alt="" class="asc" hidden src="/assets/line-angle-up-icon.svg" />
+                        <img alt="" class="desc" hidden src="/assets/line-angle-down-icon.svg" />
+                    </button>
+                </th>
+                <th data-attribute="country">
+                    <button class="header-button">
+                        Country
+                        <img alt="" class="asc" hidden src="/assets/line-angle-up-icon.svg" />
+                        <img alt="" class="desc" hidden src="/assets/line-angle-down-icon.svg" />
+                    </button>
+                </th>
+                <th data-attribute="state">
+                    <button class="header-button">
+                        State
+                        <img alt="" class="asc" hidden src="/assets/line-angle-up-icon.svg" />
+                        <img alt="" class="desc" hidden src="/assets/line-angle-down-icon.svg" />
+                    </button>
+                </th>
+                <th data-attribute="locality">
+                    <button class="header-button">
+                        Location
+                        <img alt="" class="asc" hidden src="/assets/line-angle-up-icon.svg" />
+                        <img alt="" class="desc" hidden src="/assets/line-angle-down-icon.svg" />
+                    </button>
+                </th>
+                <th data-attribute="date">
+                    <button class="header-button">
+                        Date
+                        <img alt="" class="asc" hidden src="/assets/line-angle-up-icon.svg" />
+                        <img alt="" class="desc" hidden src="/assets/line-angle-down-icon.svg" />
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for specimen in specimens %}
+                <tr>
+                    <td><a href="/specimens/{{ specimen.usi.toLowerCase() }}">{{ specimen.usi }}</a></td>
+                    {% if specimen.genus.name %}
+                        <td class="italics">{{ specimen.taxon_json.name }}</td>
+                    {% else %}
+                        <td>{{ specimen.taxon_json.name }}</td>
+                    {% endif %}
+                    <td>{{ specimen.taxon_json.common_name }}</td>
+                    <td>{{ specimen.country.abbr }}</td>
+                    <td>{{ specimen.state.name }}</td>
+                    <td>{{ specimen.locality.name }}</td>
+                    <td>{{ specimen.num_date }}</td>
+                </tr>
+            {% endfor %}
+        </body>
+    </table>
+</div>
+
+{% block scripts %}
+    <script src="/js/specimen.js" type="module"></script>
+    <script src="/js/specimen.legacy.js" nomodule></script>
+{% endblock %}

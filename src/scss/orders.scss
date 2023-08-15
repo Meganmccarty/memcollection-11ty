@@ -1,7 +1,6 @@
-@use 'utilities/colors' as c;
 @use 'shared-styles/taxon.scss';
 
 #empty-taxon {
-    color: c.$off-white;
+    color: var(--off-white);
     margin: 2rem 0 0 1.5rem;
 }

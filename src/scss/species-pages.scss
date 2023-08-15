@@ -1,7 +1,5 @@
-@use 'utilities/colors' as c;
-
 .image-gallery-container {
-    background-color: c.$off-black;
+    background-color: var(--off-black);
     display: flex;
     max-height: 90vh;
     margin: 0 1.5rem;
@@ -26,8 +24,8 @@
         }
 
         figcaption {
-            background-color: c.$off-black;
-            color: c.$off-white;
+            background-color: var(--off-black);
+            color: var(--off-white);
             font-size: 0.85rem;
             margin: 0;
             padding: 0.25rem 0.5rem;
@@ -67,7 +65,7 @@
             }
 
             &:focus-visible {
-                border: 0.1875rem solid c.$off-white;
+                border: 0.1875rem solid var(--off-white);
                 outline: none;
             }
         }
@@ -127,12 +125,12 @@
 // }
 
 ol {
-    color: c.$off-white;
+    color: var(--off-white);
     list-style: none;
     padding: 0 0 0 1.5rem;
 
     li {
-        border-left: 2px solid white;
+        border-left: 2px solid var(--white);
         padding: 0 0 0 0.5rem;
     }
 
@@ -177,18 +175,18 @@ ol {
 .p3,
 .mona {
     border-radius: 0.25rem;
-    color: c.$off-white;
+    color: var(--off-white);
     font-size: 0.9rem;
     margin: 0 0 0 0.25rem;
     padding: 0.25rem 0.5rem;
 }
 
 .p3 {
-    background-color: c.$dark-green-level-3;
+    background-color: var(--dark-green-level-3);
 }
 
 .mona {
-    background-color: c.$medium-pink-level-1;
+    background-color: var(--medium-pink-level-1);
 }
 
 @media all and (max-width: 969px) {

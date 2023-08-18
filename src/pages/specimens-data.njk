@@ -7,7 +7,7 @@ permalink: "/specimens-data.js"
         "taxon": "{{ specimen.taxon_json.name }}",
         "italics": {% if specimen.genus.name %}true,{% else %}false,{% endif %}
         "identified": {% if specimen.species.name %}true,{% else %}false,{% endif %}
-        "common_name": "{{ specimen.taxon_json.common_name }}",
+        "common_name": "{{ specimen.taxon_json.common_name | safe }}",
         "country": "{{ specimen.country.abbr }}",
         "state": "{{ specimen.state.name }}",
         "state_abbr": "{{ specimen.state.abbr }}",

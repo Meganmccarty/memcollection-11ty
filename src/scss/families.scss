@@ -64,12 +64,9 @@ ul.taxonomy-list {
     margin: 0 auto;
     width: fit-content;
 
-    picture {
-        margin: 0.25rem 0.25rem 0 0;
-
-        img {
-            height: auto;
-            width: 0.5rem;
-        }
+    img {
+        height: auto;
+        margin: 0 0.25rem 0 0;
+        width: 0.5rem;
     }
 }

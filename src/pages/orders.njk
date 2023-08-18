@@ -16,7 +16,9 @@ permalink: "/orders/{{ order.name.toLowerCase() }}/"
 
 <h1>{{ order.name }} {{ order.authority }} – {{ order.common_name }}</h1>
 <p class="hide" id="empty-taxon">There are no family pages in this order.</p>
-<ul aria-label="Families" class="taxonomy-list">
+
+<span id="family-list-label" hidden>Families</span>
+<ul aria-labelledby="family-list-label" class="taxonomy-list">
     {% for family in families %}
         {% if family.order.name === order.name %}
             <li>
@@ -24,7 +26,7 @@ permalink: "/orders/{{ order.name.toLowerCase() }}/"
                     {% if family.get_image_url %}
                         <img alt="{{ family.alt_text }}" src="{{ family.get_image_url }}" />
                     {% else %}
-                        <img alt="" aria-labelledby="{{ family.name }}" src="/assets/placeholder.webp" />
+                        <img alt="" src="/assets/placeholder.webp" />
                         <span class="placeholder-label" id="{{ family.name }}">No image</span>
                     {% endif %}
                     <span class="taxon-name">{{ family.name }}</span>

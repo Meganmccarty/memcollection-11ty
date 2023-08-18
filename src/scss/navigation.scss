@@ -155,14 +155,9 @@
                             outline: none;
                         }
 
-                        picture {
-                            align-items: center;
-                            display: flex;
-                            flex-direction: row;
-                        }
-
                         .icon-chevron-down,
                         .icon-chevron-up {
+                            height: 0.51rem;
                             margin-left: 0.5rem;
                             width: 0.875rem;
 
@@ -247,7 +242,7 @@
         #search-button {
             align-items: center;
             background-color: transparent;
-            background-image: url('../assets/search-icon-dark-gray-sm.webp');
+            background-image: url('../assets/uxwing/search-icon-dark-gray.svg');
             background-position: center;
             background-repeat: no-repeat;
             background-size: 1.25rem;
@@ -268,7 +263,7 @@
 
             &:focus-visible,
             &:hover {
-                background-image: url('../assets/search-icon-black-focused-sm.webp');
+                background-image: url('../assets/uxwing/search-icon-black.svg');
                 background-position: center 0.95rem;
             }
         }
@@ -284,7 +279,7 @@
             }
 
             #menu {
-                > li > a,
+                > li a,
                 li.dropdown-list-item > #pages-button {
                     font-size: 1rem;
                 }
@@ -317,6 +312,11 @@
 
                 &.show {
                     display: flex;
+                }
+
+                > li > a,
+                li.dropdown-list-item > #pages-button {
+                    font-size: 1.125rem;
                 }
 
                 > li {
@@ -355,18 +355,6 @@
         #navigation {
             #home-link {
                 font-size: 1.25rem;
-            }
-
-            #menu {
-                li {
-                    a {
-                        font-size: 1.125rem;
-                    }
-                }
-
-                li.dropdown-list-item > #pages-button {
-                    font-size: 1.125rem;
-                }
             }
         }
 

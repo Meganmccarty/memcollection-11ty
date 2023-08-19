@@ -1,28 +1,42 @@
-@use 'utilities/colors' as c;
+h2:focus-visible {
+    outline: var(--medium-green-level-3) solid 0.1875rem;
+}
 
 form.filters {
-    background-color: c.$dark-gray-level-2;
+    background-color: var(--dark-gray-level-2);
     display: flex;
     flex-direction: column;
-    margin: 0 1.25rem 0.75rem;
+    margin: 0.75rem 1.25rem;
     padding: 1rem;
 
     .inputs-container {
-        align-items: center;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
 
-        label {
-            color: c.$white;
+        .input-wrapper {
+            align-items: flex-start;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             width: 30%;
 
+            label {
+                color: var(--white);
+            }
+
+            .input-hint {
+                font-size: 0.75rem;
+                margin: 0.125rem 0 0;
+                padding: 0;
+            }
+
             input {
-                background-color: c.$white;
+                background-color: var(--white);
                 border: none;
                 border-radius: 0.25rem;
                 box-sizing: border-box;
-                color: c.$black;
+                color: var(--black);
                 font-size: 0.875rem;
                 height: 1.875rem;
                 line-height: 1.5rem;
@@ -31,7 +45,7 @@ form.filters {
                 width: 100%;
 
                 &:focus-visible {
-                    outline: 0.125rem solid c.$medium-green-level-3;
+                    outline: 0.125rem solid var(--medium-green-level-3);
                     outline-offset: 0.125rem;
                 }
             }
@@ -47,7 +61,7 @@ form.filters {
 
         label {
             align-items: center;
-            color: c.$white;
+            color: var(--white);
             display: flex;
             margin: 0 1.5rem 0 0;
             max-width: 12.5rem;
@@ -58,11 +72,11 @@ form.filters {
             }
 
             input[type='checkbox'] {
-                accent-color: c.$medium-green-level-3;
-                background-color: c.$white;
+                accent-color: var(--medium-green-level-3);
+                background-color: var(--white);
                 border: none;
                 box-sizing: border-box;
-                color: c.$black;
+                color: var(--black);
                 font-size: 0.875rem;
                 height: 1.5rem;
                 line-height: 1.5rem;
@@ -72,11 +86,11 @@ form.filters {
                 width: 10%;
 
                 &:hover {
-                    accent-color: c.$medium-green-level-2;
+                    accent-color: var(--medium-green-level-2);
                 }
 
                 &:focus-visible {
-                    outline: 0.125rem solid c.$medium-green-level-3;
+                    outline: 0.125rem solid var(--medium-green-level-3);
                     outline-offset: 0.125rem;
                 }
             }
@@ -88,9 +102,9 @@ form.filters {
     }
 
     button.filter-button {
-        background-color: c.$medium-green-level-3;
+        background-color: var(--medium-green-level-3);
         border: none;
-        color: c.$off-black;
+        color: var(--off-black);
         font-size: 1rem;
         margin: 1rem 0 0 auto;
         padding: 0.375rem 0.625rem;
@@ -98,23 +112,23 @@ form.filters {
 
         &:focus-visible,
         &:hover {
-            background-color: c.$light-green-level-2;
-            color: c.$off-black;
+            background-color: var(--light-green-level-2);
+            color: var(--off-black);
         }
 
         &:focus-visible {
-            outline: c.$light-green-level-1 solid 0.125rem;
+            outline: var(--light-green-level-1) solid 0.125rem;
             outline-offset: 0.125rem;
         }
     }
 }
 
 table {
-    background-color: c.$dark-gray-level-1;
-    border: 0.0625rem solid c.$light-green-level-2;
+    background-color: var(--dark-gray-level-1);
+    border: 0.0625rem solid var(--light-green-level-2);
     border-collapse: collapse;
     border-spacing: 0;
-    color: white;
+    color: var(--white);
     min-width: 56.25rem;
     width: 100%;
 
@@ -130,24 +144,25 @@ table {
     }
 
     th {
-        background-color: rgb(4 120 87);
+        background-color: var(--dark-green-level-3);
         padding: 0.5rem 0;
 
         button.header-button {
             align-items: center;
             background-color: transparent;
             border: none;
-            color: c.$white;
+            color: var(--white);
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             width: 100%;
 
             &:focus-visible {
-                outline: c.$medium-green-level-3 solid 0.25rem;
+                outline: var(--medium-green-level-3) solid 0.25rem;
             }
 
             img {
+                height: 0.54rem;
                 width: 1rem;
             }
         }
@@ -178,7 +193,7 @@ table {
 
     tbody {
         tr:nth-child(even) {
-            background-color: c.$dark-gray-level-2;
+            background-color: var(--dark-gray-level-2);
         }
     }
 }
@@ -188,8 +203,8 @@ table {
 
     #loader {
         align-items: center;
-        background-color: rgb(0 0 0 / 90%);
-        color: white;
+        background-color: var(--black-90-percent);
+        color: var(--white);
         display: flex;
         font-size: 1.5rem;
         height: 5rem;
@@ -211,37 +226,66 @@ section#map {
     margin: 0 1.25rem;
     z-index: 0;
 
+    .leaflet-bottom.leaflet-left {
+        pointer-events: all;
+    }
+
+    #bottom-left-controls {
+        display: flex;
+        margin: 0 0 0.625rem 0.625rem;
+    }
+
     #reset-map-button {
         background-clip: padding-box;
-        background-color: white;
-        border: 0.125rem solid rgba(0 0 0 / 20%);
+        background-color: var(--white);
+        border: 0.125rem solid var(--black-20-percent);
         border-radius: 0.25rem;
-        bottom: 0.625rem;
-        color: black;
-        left: 0.625rem;
+        // bottom: 0.625rem;
+        color: var(--black);
+        // left: 0.625rem;
+        // margin: 0 0 0.625rem 0.625rem;
+        margin: 0 0.625rem 0 0;
         padding: 0.5rem;
-        position: absolute;
-        z-index: 500;
+        // position: absolute;
+        // z-index: 500;
     }
 
     #legend {
         align-items: center;
         background-clip: padding-box;
-        background-color: white;
-        border: 0.125rem solid rgba(0 0 0 / 20%);
+        background-color: var(--white);
+        border: 0.125rem solid var(--black-20-percent);
         border-radius: 0.25rem;
-        bottom: 0.625rem;
+        // bottom: 0.625rem;
         display: flex;
         flex-direction: row;
         height: 2rem;
-        left: 6.5625rem;
+        // left: 6.5625rem;
         padding: 0 0.75rem 0 0.25rem;
-        position: absolute;
-        z-index: 500;
+        // position: absolute;
+        // z-index: 500;
+
+        // .legend-circle {
+        //     border-radius: 50%;
+        //     height: 1rem;
+        //     margin: 0 0.25rem 0 0.75rem;
+        //     width: 1rem;
+        // }
+
+        // .legend-circle#circle-identified {
+        //     background-color: #bae6fd;
+        //     border: 0.1875rem solid #0ea5e9;
+        // }
+
+        // .legend-circle#circle-unidentified {
+        //     background-color: #be185d;
+        //     border: 0.1875rem solid #f9a8d4;
+        // }
 
         img {
             height: 1.5rem;
             margin: 0 0.25rem 0 0.75rem;
+            width: 1.0615rem;
         }
     }
 }
@@ -249,6 +293,18 @@ section#map {
 div.table-container {
     overflow: scroll;
     padding: 1.25rem;
+}
+
+#skip-map-forward {
+    left: calc(50% - 10.125rem / 2);
+    margin: -2rem 0 0;
+    position: absolute;
+}
+
+#skip-map-back {
+    left: calc(50% - 9.0625rem / 2);
+    margin: 1rem 0 0;
+    position: absolute;
 }
 
 @media (max-width: 785px) {
@@ -271,7 +327,7 @@ div.table-container {
         .inputs-container {
             flex-direction: column;
 
-            label {
+            .input-wrapper {
                 margin: 0 0 0.5rem;
                 width: 100%;
             }

@@ -1,5 +1,3 @@
-@use 'utilities/colors' as c;
-
 #image-container {
     align-items: center;
     display: flex;
@@ -18,22 +16,22 @@
     min-height: 50vh;
 
     table {
-        background-color: c.$dark-gray-level-1;
-        border: 0.0625rem solid c.$light-green-level-2;
+        background-color: var(--dark-gray-level-1);
+        border: 0.0625rem solid var(--light-green-level-2);
         margin: 0 1.5rem;
         width: 50%;
 
         tr {
             th {
-                background-color: c.$dark-green-level-3;
-                color: c.$white;
+                background-color: var(--dark-green-level-3);
+                color: var(--white);
                 padding: 0 0.5rem 0 0;
                 text-align: right;
                 width: 25%;
             }
 
             td {
-                color: c.$white;
+                color: var(--white);
                 padding: 0 0 0 0.5rem;
 
                 &.italics {
@@ -44,7 +42,7 @@
 
         tr:nth-child(even) {
             td {
-                background-color: c.$dark-gray-level-2;
+                background-color: var(--dark-gray-level-2);
             }
         }
     }
@@ -57,11 +55,11 @@ section#specimen-map {
 
     #reset-map-button {
         background-clip: padding-box;
-        background-color: white;
-        border: 0.125rem solid rgba(0 0 0 / 20%);
+        background-color: var(--white);
+        border: 0.125rem solid var(--black-20-percent);
         border-radius: 0.25rem;
         bottom: 0.625rem;
-        color: black;
+        color: var(--black);
         left: 0.625rem;
         padding: 0.5rem;
         position: absolute;
@@ -71,8 +69,8 @@ section#specimen-map {
     #legend {
         align-items: center;
         background-clip: padding-box;
-        background-color: white;
-        border: 0.125rem solid rgba(0 0 0 / 20%);
+        background-color: var(--white);
+        border: 0.125rem solid var(--black-20-percent);
         border-radius: 0.25rem;
         bottom: 0.625rem;
         display: flex;

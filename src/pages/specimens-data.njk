@@ -7,11 +7,11 @@ permalink: "/specimens-data.js"
         "taxon": "{{ specimen.taxon_json.name }}",
         "italics": {% if specimen.genus.name %}true,{% else %}false,{% endif %}
         "identified": {% if specimen.species.name %}true,{% else %}false,{% endif %}
-        "common_name": "{{ specimen.taxon_json.common_name }}",
+        "common_name": "{{ specimen.taxon_json.common_name | safe }}",
         "country": "{{ specimen.country.abbr }}",
         "state": "{{ specimen.state.name }}",
         "state_abbr": "{{ specimen.state.abbr }}",
-        "locality": "{{ specimen.locality.name }}",{% if specimen.gps.latitude %}
+        "locality": "{{ specimen.locality.name | safe }}",{% if specimen.gps.latitude %}
         "gps": {
             "lat": {{ specimen.gps.latitude }},
             "long": {{ specimen.gps.longitude }},

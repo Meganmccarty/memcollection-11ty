@@ -1,11 +1,55 @@
-@use 'utilities/colors' as c;
+:root {
+    /* ----- GREENS ----- */
+    --dark-green-level-1: rgb(6 78 59);
+    --dark-green-level-2: rgb(6 95 70);
+    --dark-green-level-3: rgb(4 120 87);
+    --medium-green-level-1: rgb(5 150 104);
+    --medium-green-level-2: rgb(16 185 129);
+    --medium-green-level-3: rgb(52 211 153);
+    --light-green-level-1: rgb(110 231 183);
+    --light-green-level-2: rgb(167 243 208);
+    --light-green-level-3: rgb(209 250 229);
+    --light-green-level-4: rgb(236 253 245);
+
+    /* ----- PINKS ----- */
+    --dark-pink-level-1: rgb(80 7 36);
+    --dark-pink-level-2: rgb(131 24 67);
+    --dark-pink-level-3: rgb(157 23 77);
+    --medium-pink-level-1: rgb(190 24 93);
+    --medium-pink-level-2: rgb(219 39 119);
+    --medium-pink-level-3: rgb(236 72 153);
+    --light-pink-level-1: rgb(244 114 182);
+    --light-pink-level-2: rgb(255 174 218);
+    --light-pink-level-3: rgb(251 207 232);
+    --light-pink-level-4: rgb(252 231 243);
+
+    /* ----- BLACKS ----- */
+    --black: rgb(24 24 27);
+    --off-black: rgb(39 39 42);
+    --black-20-percent: rgba(0 0 0 / 20%);
+    --black-90-percent: rgba(0 0 0 / 90%);
+
+    /* ----- GRAYS ---- */
+    --dark-gray-level-1: rgb(63 63 70);
+    --dark-gray-level-2: rgb(82 82 91);
+    --medium-gray-level-1: rgb(113 113 122);
+    --medium-gray-level-2: rgb(161 161 170);
+    --light-gray-level-1: rgb(212 212 216);
+    --light-gray-level-2: rgb(228 228 231);
+    --light-gray-level-3: rgb(244 244 245);
+
+    /* ----- WHITES ----- */
+    --white: rgb(255 255 255);
+    --off-white: rgb(250 250 250);
+}
 
 html {
     font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: c.$dark-gray-level-1;
+    background-color: var(--dark-gray-level-1);
     margin: 0;
 }
 
@@ -14,7 +58,7 @@ main {
     padding: 0;
 
     #overlay {
-        background-color: c.$black;
+        background-color: var(--black);
         display: none;
         height: 100vh;
         left: 0;
@@ -31,30 +75,30 @@ main {
 }
 
 h1 {
-    border-bottom: 0.125rem solid c.$medium-gray-level-2;
-    color: c.$off-white;
+    border-bottom: 0.125rem solid var(--medium-gray-level-2);
+    color: var(--off-white);
     font-size: 1.5rem;
     margin: 0.75rem 1.5rem;
     padding: 0 0 0.75rem;
 }
 
 h2 {
-    color: c.$off-white;
+    color: var(--off-white);
     font-size: 1.25rem;
     margin: 0.75rem 1.5rem;
 }
 
 p {
-    color: c.$off-white;
+    color: var(--off-white);
     margin: 0 1.5rem;
 }
 
 a {
-    color: c.$light-green-level-2;
+    color: var(--light-green-level-2);
     text-decoration: underline;
 
     &:visited {
-        color: c.$light-pink-level-2;
+        color: var(--light-pink-level-2);
     }
 
     &:focus-visible,
@@ -63,23 +107,33 @@ a {
     }
 
     &:focus-visible {
-        color: c.$off-white;
-        outline: c.$light-green-level-2 0.125rem solid;
+        color: var(--off-white);
+        outline: var(--light-green-level-2) 0.125rem solid;
     }
 
     &:visited:focus-visible {
-        outline: c.$light-pink-level-2 0.125rem solid;
+        outline: var(--light-pink-level-2) 0.125rem solid;
     }
 }
 
 footer {
-    color: c.$off-white;
+    color: var(--off-white);
     margin: 3rem 1rem 1rem;
 }
 
 .hide {
     display: none;
 }
+
+.visually-hidden:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
 
 @media (min-width: 1300px) {
     main {

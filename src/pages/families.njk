@@ -21,7 +21,8 @@ permalink: "/orders/{{ family.order.name.toLowerCase() }}/families/{{ family.nam
     {% endif %}
 </h1>
 
-<nav aria-label="Page" id="toc">
+<span id="page-nav-label" hidden>Page</span>
+<nav aria-labelledby="page-nav-label" id="toc">
     Subfamilies
     <ul>
         {% for subfamily in subfamilies %}
@@ -60,7 +61,8 @@ permalink: "/orders/{{ family.order.name.toLowerCase() }}/families/{{ family.nam
 
         <p class="empty-subfamily hide">There are no species pages in this subfamily.</p>
 
-        <ul aria-label="Species under subfamily {{ subfamily.name }}" class="taxonomy-list">
+        <span id="subfamily-list-label" hidden>Species under subfamily {{ subfamily.name }}</span>
+        <ul aria-labelledby="subfamily-list-label" class="taxonomy-list">
             {% for page in pages | sort(attribute='species.p3') %}
                 {% if page.subfamily.name === subfamily.name %}
                     <li>
@@ -68,7 +70,7 @@ permalink: "/orders/{{ family.order.name.toLowerCase() }}/families/{{ family.nam
                             {% if page.insect_images[0] %}
                                 <img alt="{{ page.insect_images[0].alt_text }}" src="{{ page.insect_images[0].get_image_url }}" />
                             {% else %}
-                                <img alt="" aria-labelledby="{{ page.genus.name }}-{{ page.species.name }}" src="/assets/placeholder.webp" />
+                                <img alt="" src="/assets/placeholder.webp" />
                                 <span class="placeholder-label" id="{{ page.genus.name }}-{{ page.species.name }}">No image</span>
                             {% endif %}
                             <span class="common-name">{{ page.species.common_name }}</span>
@@ -86,17 +88,13 @@ permalink: "/orders/{{ family.order.name.toLowerCase() }}/families/{{ family.nam
         </ul>
 
         <a class="back-to-top" href="#main">
-            <picture>
-                <source type="image/webp" srcset="/assets/arrow-top-icon-white-sm.webp">
-                <source type="image/png" srcset="/assets/arrow-top-icon-white-sm.png">
-                <img alt="" />
-            </picture>
+            <img alt="" src="/assets/uxwing/arrow-top-icon-white.svg" />
             Back To Top
         </a>
     {% endif %}
 {% endfor %}
 
 {% block scripts %}
-    <script src="/js/family.js" type="module"></script>
-    <script src="/js/family.legacy.js" nomodule></script>
+    <script src="/js/families.js" type="module"></script>
+    <script src="/js/families.legacy.js" nomodule></script>
 {% endblock %}

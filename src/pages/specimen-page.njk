@@ -8,16 +8,19 @@ eleventyComputed:
     title: "{{ specimen.usi }} | MEMC"
     description: "The detail page for the specimen {{ specimen.usi }}"
 layout: layout.njk
+css: [
+    'rel=stylesheet href=/css/specimen-page.css',
+    'rel=stylesheet href=https://unpkg.com/leaflet@1.9.4/dist/leaflet.css
+        integrity=sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=
+        crossorigin='
+]
+js: [
+    'defer src=/js/specimen-page.js type=module',
+    'defer src=/js/specimen-page.legacy.js nomodule'
+]
 permalink: "/specimens/{{ specimen.usi.toLowerCase() }}/"
 tag: specimenPage
 ---
-
-{% block css %}
-    <link rel="stylesheet" href="/css/specimen-page.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-        crossorigin=""/>
-{% endblock %}
 
 <h1>
     {{ specimen.usi }}: 
@@ -26,8 +29,9 @@ tag: specimenPage
         (<i><a href="/orders/{{ specimen.order.name.toLowerCase() }}/families/{{ specimen.family.name.toLowerCase() }}/species/{{ specimen.genus.name.toLowerCase() }}-{{ specimen.species.name.toLowerCase() }}">{{ specimen.taxon_json.name }}</a></i>)
     {% elif specimen.genus %}
         (<i>{{ specimen.taxon_json.name }}</i>)
-    {% else %}
+    {% elif specimen.taxon_json.name %}
         ({{ specimen.taxon_json.name }})
+    {% else %}
     {% endif %}
 </h1>
 
@@ -50,6 +54,7 @@ tag: specimenPage
             <th>Specimen Number</th>
             <td>{{ specimen.usi }}</td>
         </tr>
+        {% if specimen.taxon_json.name %}
         <tr>
             <th>Taxon</th>
             {% if specimen.subspecies or specimen.species %}
@@ -60,6 +65,13 @@ tag: specimenPage
                 <td id="taxon">{{ specimen.taxon_json.name }}</td>
             {% endif %}
         </tr>
+        {% endif %}
+        {% if specimen.taxon_json.authority %}
+        <tr>
+            <th>Authority</th>
+            <td>{{ specimen.taxon_json.authority }}</td>
+        </tr>
+        {% endif %}
         {% if specimen.taxon_json.common_name %}
         <tr>
             <th>Common Name</th>
@@ -204,18 +216,15 @@ tag: specimenPage
     </table>
 </div>
 
-<h2>Map</h2>
+{% if specimen.gps.latitude %}
+<h2 id="map-label">Map</h2>
 
 <section aria-labelledby="map-label" id="specimen-map">
     <button id="reset-map-button">Reset Map</button>
     <section aria-labelledby="map-legend" id="legend">
         <span hidden id="map-legend">Specimen Map Legend</span>
-        <img alt="" src="/assets/map-pin-icon-blue.svg" /><span>Identified</span>
-        <img alt="" src="/assets/map-pin-icon-pink.svg" /><span>Unidentified</span>
+        <img alt="" src="/assets/uxwing/map-pin-icon-blue.svg" /><span>Identified</span>
+        <img alt="" src="/assets/uxwing/map-pin-icon-pink.svg" /><span>Unidentified</span>
     </section>
 </section>
-
-{% block scripts %}
-    <script src="/js/specimen-page.js" type="module"></script>
-    <script src="/js/specimen-page.legacy.js" nomodule></script>
-{% endblock %}
+{% endif %}

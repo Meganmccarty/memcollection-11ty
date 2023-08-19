@@ -1,28 +1,23 @@
 <div id="nav-container">
-    <nav aria-label="Site" id="navigation">
-        <button aria-label="Open menu" id="open-menu">
-            <picture>
-                <source type="image/webp" srcset="/assets/hamburger-icon-white-sm.webp">
-                <source type="image/png" srcset="/assets/hamburger-icon-white-sm.png">
-                <img alt="" />
-            </picture>
+    <span id="site-nav-label" hidden>Site</span>
+    <nav aria-labelledby="site-nav-label" id="navigation">
+        <button aria-labelledby="open-menu-label" id="open-menu">
+            <span hidden id="open-menu-label">Open menu</span>
+            <img alt="" height="16" src="/assets/uxwing/hamburger-menu-icon-white.svg" width="20" />
         </button>
         <a href="/" id="home-link">
             <picture>
                 <source type="image/webp" srcset="/assets/logo-white.webp">
                 <source type="image/png" srcset="/assets/logo-white.png">
-                <img alt="" />
+                <img alt="" height="29.6" width="40" />
             </picture>
             MEM Collection
         </a>
         <ul id="menu" role="list">
             <li class="first-list-item">
-                <button aria-label="Close menu" id="close-menu">
-                     <picture>
-                        <source type="image/webp" srcset="/assets/hamburger-icon-white-sm.webp">
-                        <source type="image/png" srcset="/assets/hamburger-icon-white-sm.png">
-                        <img alt="" />
-                    </picture>
+                <button aria-labelledby="close-menu-label" id="close-menu">
+                    <span hidden id="close-menu-label">Close menu</span>
+                    <img alt="" height="16" src="/assets/uxwing/hamburger-menu-icon-white.svg" width="20" />
                 </button>
             </li>
             <li>
@@ -39,16 +34,8 @@
                         aria-expanded="false"
                         id="pages-button">
                     Pages
-                    <picture>
-                        <source type="image/webp" srcset="/assets/chevron-down-icon-sm.webp">
-                        <source type="image/png" srcset="/assets/chevron-down-icon-sm.png">
-                        <img alt="" class="icon-chevron-down" />
-                    </picture>
-                    <picture>
-                        <source type="image/webp" srcset="/assets/chevron-up-icon-sm.webp">
-                        <source type="image/png" srcset="/assets/chevron-up-icon-sm.png">
-                        <img alt="" class="icon-chevron-up hide" />
-                    </picture>
+                    <img alt="" class="icon-chevron-down" height="8.16" src="/assets/uxwing/chevron-down-icon-white.svg" width="14" />
+                    <img alt="" class="icon-chevron-up hide" height="8.16" src="/assets/uxwing/chevron-up-icon-white.svg" width="14" />
                 </button>
                 <ul class="hide" id="pages-dropdown">
                     {% for order in orders %}
@@ -63,8 +50,12 @@
             </li>
         </ul>
     </nav>
-    <form aria-label="Site" id="search-container" role="search">
-        <input aria-label="Search term" type="text" />
-        <button aria-label="Submit" id="search-button"></button>
+    <form aria-labelledby="site-search-label" id="search-container" role="search">
+        <span hidden id="site-search-label">Site</span>
+        <label class="visually-hidden" for="search-input">Search</label>
+        <input id="search-input" type="text" />
+        <button aria-labelledby="search-button-label" id="search-button">
+            <span hidden id="search-button-label">Submit</span>
+        </button>
     </form>
 </div>

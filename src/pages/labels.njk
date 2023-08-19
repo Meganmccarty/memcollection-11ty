@@ -2,10 +2,12 @@
 title: Labels | MEMC
 description: The labels page for the MEM Collection site.
 layout: layout.njk
+css: ['rel=stylesheet href=/css/labels.css']
+js: [
+    'defer src=/js/labels.js type=module',
+    'defer src=/js/labels.legacy.js nomodule'
+]
 ---
-{% block css %}
-    <link rel="stylesheet" href="/css/labels.css" />
-{% endblock %}
 
 <h1>Generate Labels</h1>
 <p>
@@ -271,8 +273,3 @@ layout: layout.njk
 <h2>Output</h2>
 <p>There are currently no labels. Use the form above to create some!</p>
 <div id="label-output"></div>
-
-{% block scripts %}
-    <script src="/js/labels.js" type="module"></script>
-    <script src="/js/labels.legacy.js" nomodule></script>
-{% endblock %}

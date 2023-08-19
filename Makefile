@@ -13,3 +13,8 @@ start:
 	make run npm start
 exec:
 	docker exec -it 11ty $(filter-out $@,$(MAKECMDGOALS))
+
+lint-js:
+	docker exec -it 11ty npm run lint:js
+lint-js-fix:
+	docker exec -it 11ty npm run lint:js:fix

@@ -8,11 +8,13 @@ eleventyComputed:
     title: "{{ page.get_binomial }} | MEMC"
     description: "The detail page for the order {{ page.get_binomial }}"
 layout: layout.njk
+css: ['rel=stylesheet href=/css/species-page.css']
+js: [
+    'defer src=/js/species-page.js type=module',
+    'defer src=/js/species-page.legacy.js nomodule'
+]
 permalink: "/orders/{{ page.order.name.toLowerCase() }}/families/{{ page.family.name.toLowerCase() }}/species/{{ page.title }}/"
 ---
-{% block css %}
-    <link rel="stylesheet" href="/css/species-pages.css" />
-{% endblock %}
 
 <h1>
     <i>{{ page.get_binomial }}</i>&nbsp;&nbsp;{{ page.species.authority }} 
@@ -134,8 +136,3 @@ permalink: "/orders/{{ page.order.name.toLowerCase() }}/families/{{ page.family.
     <button>Close</button>
     <button></button>
 </dialog> #}
-
-{% block scripts %}
-    <script src="/js/species-page.js" type="module"></script>
-    <script src="/js/species-page.legacy.js" nomodule></script>
-{% endblock %}

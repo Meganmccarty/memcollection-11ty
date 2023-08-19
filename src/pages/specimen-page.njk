@@ -26,8 +26,9 @@ tag: specimenPage
         (<i><a href="/orders/{{ specimen.order.name.toLowerCase() }}/families/{{ specimen.family.name.toLowerCase() }}/species/{{ specimen.genus.name.toLowerCase() }}-{{ specimen.species.name.toLowerCase() }}">{{ specimen.taxon_json.name }}</a></i>)
     {% elif specimen.genus %}
         (<i>{{ specimen.taxon_json.name }}</i>)
-    {% else %}
+    {% elif specimen.taxon_json.name %}
         ({{ specimen.taxon_json.name }})
+    {% else %}
     {% endif %}
 </h1>
 
@@ -50,6 +51,7 @@ tag: specimenPage
             <th>Specimen Number</th>
             <td>{{ specimen.usi }}</td>
         </tr>
+        {% if specimen.taxon_json.name %}
         <tr>
             <th>Taxon</th>
             {% if specimen.subspecies or specimen.species %}
@@ -60,6 +62,13 @@ tag: specimenPage
                 <td id="taxon">{{ specimen.taxon_json.name }}</td>
             {% endif %}
         </tr>
+        {% endif %}
+        {% if specimen.taxon_json.authority %}
+        <tr>
+            <th>Authority</th>
+            <td>{{ specimen.taxon_json.authority }}</td>
+        </tr>
+        {% endif %}
         {% if specimen.taxon_json.common_name %}
         <tr>
             <th>Common Name</th>

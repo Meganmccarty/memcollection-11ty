@@ -11,7 +11,7 @@ permalink: "/specimens-data.js"
         "country": "{{ specimen.country.abbr }}",
         "state": "{{ specimen.state.name }}",
         "state_abbr": "{{ specimen.state.abbr }}",
-        "locality": "{{ specimen.locality.name }}",{% if specimen.gps.latitude %}
+        "locality": "{{ specimen.locality.name | safe }}",{% if specimen.gps.latitude %}
         "gps": {
             "lat": {{ specimen.gps.latitude }},
             "long": {{ specimen.gps.longitude }},

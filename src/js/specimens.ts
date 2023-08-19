@@ -47,31 +47,31 @@ export function getSpecimensWithGPS(specimens: Specimen[]): Specimen[] {
  * @param markerGroup - The Leaflet layer group containing all of the markers
  */
  export function addSpecimenMarker(
-    // icon: L.Icon,
-    color: object,
+    icon: L.Icon,
+    // color: object,
     specimens: Specimen[],
     markerGroup: L.LayerGroup,
 ): void {
     // Loop through the specimens array
     specimens.forEach((specimen: Specimen) => {
         // Create a marker for the specimen
-        // const marker: L.Marker = L.marker(
-        //     [
-        //         specimen.gps.lat,
-        //         specimen.gps.long,
-        //     ],
-        //     {
-        //         alt: `${specimen.usi}`,
-        //         icon,
-        //     },
-        // );
-        const marker = L.circleMarker(
+        const marker: L.Marker = L.marker(
             [
                 specimen.gps.lat,
                 specimen.gps.long,
             ],
-            color,
+            {
+                alt: `${specimen.usi}`,
+                icon,
+            },
         );
+        // const marker = L.circleMarker(
+        //     [
+        //         specimen.gps.lat,
+        //         specimen.gps.long,
+        //     ],
+        //     color,
+        // );
 
         // Store the specimen's taxon information in a variable
         let taxon: string = specimen.taxon;
@@ -121,8 +121,8 @@ export function createSpecimenMarkers(
     markerGroup: L.LayerGroup,
 ): void {
     // Create Leaflet icons for identified and unidentified specimens
-    const blueIcon: L.Icon = createMarker('/assets/map-pin-icon-blue.svg');
-    const pinkIcon: L.Icon = createMarker('/assets/map-pin-icon-pink.svg');
+    const blueIcon: L.Icon = createMarker('/assets/uxwing/map-pin-icon-blue.svg');
+    const pinkIcon: L.Icon = createMarker('/assets/uxwing/map-pin-icon-pink.svg');
 
     const blue = {
         color: '#0ea5e9',
@@ -159,10 +159,10 @@ export function createSpecimenMarkers(
     markerGroup.clearLayers();
 
     // Now, add the new map markers for the identified and unidentified specimens
-    // addSpecimenMarker(blueIcon, identified, markerGroup);
-    // addSpecimenMarker(pinkIcon, unidentified, markerGroup);
-    addSpecimenMarker(blue, identified, markerGroup);
-    addSpecimenMarker(pink, unidentified, markerGroup);
+    addSpecimenMarker(blueIcon, identified, markerGroup);
+    addSpecimenMarker(pinkIcon, unidentified, markerGroup);
+    // addSpecimenMarker(blue, identified, markerGroup);
+    // addSpecimenMarker(pink, unidentified, markerGroup);
 }
 
 export function sortRows(
@@ -456,7 +456,7 @@ export function initializeLeafletMap(lat: number, long: number, zoom: number): L
         'map',
         {
             preferCanvas: true,
-            scrollWheelZoom: false,
+            scrollWheelZoom: true,
         },
     ).setView([lat, long], zoom);
     // ).setView([50.000, -104.180], 3);
@@ -508,6 +508,14 @@ export function initializeLeafletMap(lat: number, long: number, zoom: number): L
     resetMapBtn?.addEventListener('click', () => {
         map.setView([lat, long], zoom);
     });
+
+    const bottomLeftControls = document.getElementById('bottom-left-controls');
+    const bottomLeft = document.querySelector('div.leaflet-bottom.leaflet-left');
+
+    if (bottomLeft && bottomLeftControls) {
+        bottomLeftControls.removeAttribute('hidden');
+        bottomLeft.append(bottomLeftControls);
+    }
 
     return map;
 }
@@ -587,6 +595,12 @@ export function filterSpecimensInMapAndTable(
     // filterTable(filteredSpecimens, specimens, tableBodyRows);
     filterTable(filteredSpecimens, specimens);
 
+    const tableContainer = document.querySelector('div.table-container');
+    const emptyTable = document.getElementById('empty-table');
+    if (tableContainer && emptyTable) {
+        tableContainer.removeAttribute('hidden');
+        emptyTable.setAttribute('hidden', '');
+    }
     toggleLoader(false);
 }
 

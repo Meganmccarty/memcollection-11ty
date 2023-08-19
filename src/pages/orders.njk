@@ -8,11 +8,13 @@ eleventyComputed:
     title: "{{ order.name }} | MEMC"
     description: "The detail page for the order {{ order.name }}"
 layout: layout.njk
+css: ['rel=stylesheet href=/css/orders.css']
+js: [
+    'defer src=/js/orders.js type=module',
+    'defer src=/js/orders.legacy.js nomodule'
+]
 permalink: "/orders/{{ order.name.toLowerCase() }}/"
 ---
-{% block css %}
-    <link rel="stylesheet" href="/css/orders.css" />
-{% endblock %}
 
 <h1>{{ order.name }} {{ order.authority }} – {{ order.common_name }}</h1>
 <p class="hide" id="empty-taxon">There are no family pages in this order.</p>
@@ -35,8 +37,3 @@ permalink: "/orders/{{ order.name.toLowerCase() }}/"
         {% endif %}
     {% endfor %}
 </ul>
-
-{% block scripts %}
-    <script src="/js/orders.js" type="module"></script>
-    <script src="/js/orders.legacy.js" nomodule></script>
-{% endblock %}

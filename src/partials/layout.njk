@@ -16,13 +16,16 @@
         <link rel="manifest" href="/assets/manifest.json" />
         <meta name="theme-color" content="#000000" />
 
-        <link rel="preconnect" href="https://fonts.googleapis.com/css2?family=Lato&display=swap" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com/css2?family=Lato&display=swap" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap" />
 
         <link rel="stylesheet" href="/css/styles.css" />
         <link rel="stylesheet" href="/css/navigation.css" />
 
-        {% block css %}{% endblock %}
+        {% if css %}
+            {% for item in css %}
+                <link {{ item }} />
+            {% endfor %}
+        {% endif %}
     </head>
     <body>
         <header>
@@ -38,8 +41,6 @@
             {% include "footer.njk" %}
         {% endblock %}
 
-        {% block scripts %}{% endblock %}
-
         <script type="module">
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
@@ -49,5 +50,11 @@
         </script>
         <script src="/js/navigation.js" type="module"></script>
         <script src="/js/navigation.legacy.js" nomodule></script>
+
+        {% if js %}
+            {% for item in js %}
+                <script {{ item }}></script>
+            {% endfor %}
+        {% endif %}
     </body>
 </html>

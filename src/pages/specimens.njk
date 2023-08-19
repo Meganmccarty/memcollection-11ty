@@ -2,13 +2,17 @@
 title: Specimens | MEMC
 description: The specimens page for the MEM Collection site.
 layout: layout.njk
+css: [
+    'rel=stylesheet href=/css/specimens.css',
+    'rel=stylesheet href=https://unpkg.com/leaflet@1.9.4/dist/leaflet.css
+        integrity=sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=
+        crossorigin='
+]
+js: [
+    'defer src=/js/specimens.js type=module',
+    'defer src=/js/specimens.legacy.js nomodule'
+]
 ---
-{% block css %}
-    <link rel="stylesheet" href="/css/specimens.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-        crossorigin=""/>
-{% endblock %}
 
 <h1>Specimens</h1>
 
@@ -66,8 +70,8 @@ layout: layout.njk
         <div hidden id="bottom-left-controls">
             <button id="reset-map-button">Reset Map</button>
             <section aria-hidden="true" id="legend">
-                <img alt="" height="24" src="/assets/map-pin-icon-blue.svg" width="16.984" /><span>Identified</span>
-                <img alt="" height="24" src="/assets/map-pin-icon-pink.svg" width="16.984" /><span>Unidentified</span>
+                <img alt="" height="24" src="/assets/uxwing/map-pin-icon-blue.svg" width="16.984" /><span>Identified</span>
+                <img alt="" height="24" src="/assets/uxwing/map-pin-icon-pink.svg" width="16.984" /><span>Unidentified</span>
                 {# <span class="legend-circle" id="circle-identified"></span>
                 Identified
                 <span class="legend-circle" id="circle-unidentified"></span>
@@ -155,8 +159,3 @@ layout: layout.njk
         </body>
     </table>
 </div>
-
-{% block scripts %}
-    <script defer src="/js/specimens.js" type="module"></script>
-    <script defer src="/js/specimens.legacy.js" nomodule></script>
-{% endblock %}

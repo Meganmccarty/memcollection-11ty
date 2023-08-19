@@ -8,16 +8,19 @@ eleventyComputed:
     title: "{{ specimen.usi }} | MEMC"
     description: "The detail page for the specimen {{ specimen.usi }}"
 layout: layout.njk
+css: [
+    'rel=stylesheet href=/css/specimen-page.css',
+    'rel=stylesheet href=https://unpkg.com/leaflet@1.9.4/dist/leaflet.css
+        integrity=sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=
+        crossorigin='
+]
+js: [
+    'defer src=/js/specimen-page.js type=module',
+    'defer src=/js/specimen-page.legacy.js nomodule'
+]
 permalink: "/specimens/{{ specimen.usi.toLowerCase() }}/"
 tag: specimenPage
 ---
-
-{% block css %}
-    <link rel="stylesheet" href="/css/specimen-page.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-        crossorigin=""/>
-{% endblock %}
 
 <h1>
     {{ specimen.usi }}: 
@@ -220,13 +223,8 @@ tag: specimenPage
     <button id="reset-map-button">Reset Map</button>
     <section aria-labelledby="map-legend" id="legend">
         <span hidden id="map-legend">Specimen Map Legend</span>
-        <img alt="" src="/assets/map-pin-icon-blue.svg" /><span>Identified</span>
-        <img alt="" src="/assets/map-pin-icon-pink.svg" /><span>Unidentified</span>
+        <img alt="" src="/assets/uxwing/map-pin-icon-blue.svg" /><span>Identified</span>
+        <img alt="" src="/assets/uxwing/map-pin-icon-pink.svg" /><span>Unidentified</span>
     </section>
 </section>
 {% endif %}
-
-{% block scripts %}
-    <script src="/js/specimen-page.js" type="module"></script>
-    <script src="/js/specimen-page.legacy.js" nomodule></script>
-{% endblock %}

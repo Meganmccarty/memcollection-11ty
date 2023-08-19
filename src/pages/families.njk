@@ -8,6 +8,11 @@ eleventyComputed:
     title: "{{ family.name }} | MEMC"
     description: "The detail page for the order {{ family.name }}"
 layout: layout.njk
+css: ['rel=stylesheet href=/css/families.css']
+js: [
+    'defer src=/js/families.js type=module',
+    'defer src=/js/families.legacy.js nomodule'
+]
 permalink: "/orders/{{ family.order.name.toLowerCase() }}/families/{{ family.name.toLowerCase() }}/"
 ---
 {% block css %}
@@ -93,8 +98,3 @@ permalink: "/orders/{{ family.order.name.toLowerCase() }}/families/{{ family.nam
         </a>
     {% endif %}
 {% endfor %}
-
-{% block scripts %}
-    <script src="/js/families.js" type="module"></script>
-    <script src="/js/families.legacy.js" nomodule></script>
-{% endblock %}

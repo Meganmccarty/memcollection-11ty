@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const specimenMap = L.map(
             'specimen-map',
-            { scrollWheelZoom: false },
+            { scrollWheelZoom: true },
         ).setView([lat, long], 13);
 
         // Set up the default tile layer (street view)
@@ -71,13 +71,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (taxonIdentified && taxonIdentified.length > 0) {
             icon = L.icon({
-                iconUrl: '/assets/map-pin-icon-blue.svg',
+                iconUrl: '/assets/uxwing/map-pin-icon-blue.svg',
                 iconSize: [25, 85],
                 iconAnchor: [12.5, 60],
             });
         } else {
             icon = L.icon({
-                iconUrl: '/assets/map-pin-icon-pink.svg',
+                iconUrl: '/assets/uxwing/map-pin-icon-pink.svg',
                 iconSize: [25, 85],
                 iconAnchor: [12.5, 60],
             });

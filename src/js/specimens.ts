@@ -48,7 +48,6 @@ export function getSpecimensWithGPS(specimens: Specimen[]): Specimen[] {
  */
  export function addSpecimenMarker(
     icon: L.Icon,
-    // color: object,
     specimens: Specimen[],
     markerGroup: L.LayerGroup,
 ): void {
@@ -65,16 +64,9 @@ export function getSpecimensWithGPS(specimens: Specimen[]): Specimen[] {
                 icon,
             },
         );
-        // const marker = L.circleMarker(
-        //     [
-        //         specimen.gps.lat,
-        //         specimen.gps.long,
-        //     ],
-        //     color,
-        // );
 
         // Store the specimen's taxon information in a variable
-        let taxon: string = specimen.taxon;
+        let { taxon } = specimen;
 
         // If the specimen's taxon is at genus or below, then it needs to be italicized
         if (specimen.italics) {
@@ -123,21 +115,6 @@ export function createSpecimenMarkers(
     // Create Leaflet icons for identified and unidentified specimens
     const blueIcon: L.Icon = createMarker('/assets/uxwing/map-pin-icon-blue.svg');
     const pinkIcon: L.Icon = createMarker('/assets/uxwing/map-pin-icon-pink.svg');
-
-    const blue = {
-        color: '#0ea5e9',
-        fillColor: '#bae6fd',
-        fillOpacity: 1.0,
-    };
-
-    const pink = {
-        color: '#f9a8d4',
-        fillColor: '#be185d',
-        fillOpacity: 1.0,
-    };
-
-    const blueColor = '#bae6fd';
-    const pinkColor = '#be185d';
 
     // Create some empty arrays that will hold identified and unidentified specimens
     const identified: Specimen[] = [];
@@ -520,6 +497,42 @@ export function initializeLeafletMap(lat: number, long: number, zoom: number): L
     return map;
 }
 
+export function createSpecimenTableRows(filteredSpecimens: Specimen[]): void {
+    const tableBody = document.querySelector('table tbody');
+
+    filteredSpecimens.forEach((specimen: Specimen) => {
+        const tableRow = document.createElement('tr');
+        const tableDataUsi = document.createElement('td');
+        const tableDataTaxon = document.createElement('td');
+        const tableDataCommonName = document.createElement('td');
+        const tableDataCountry = document.createElement('td');
+        const tableDataState = document.createElement('td');
+        const tableDataLocality = document.createElement('td');
+        const tableDataDate = document.createElement('td');
+
+        tableDataUsi.innerHTML = `<a href="/specimens/${specimen.usi.toLowerCase()}">${specimen.usi}</a>`;
+        tableDataTaxon.innerText = specimen.taxon;
+        if (specimen.italics) {
+            tableDataTaxon.classList.add('italics');
+        }
+        tableDataCommonName.innerText = specimen.common_name;
+        tableDataCountry.innerText = specimen.country;
+        tableDataState.innerText = specimen.state;
+        tableDataLocality.innerText = specimen.locality;
+        tableDataDate.innerText = specimen.date;
+
+        tableRow.appendChild(tableDataUsi);
+        tableRow.appendChild(tableDataTaxon);
+        tableRow.appendChild(tableDataCommonName);
+        tableRow.appendChild(tableDataCountry);
+        tableRow.appendChild(tableDataState);
+        tableRow.appendChild(tableDataLocality);
+        tableRow.appendChild(tableDataDate);
+
+        tableBody?.appendChild(tableRow);
+    });
+}
+
 export function toggleLoader(loading: boolean) {
     const loader = document.getElementById('loader');
 
@@ -538,14 +551,12 @@ export function toggleLoader(loading: boolean) {
  * @param inputCheckboxes - An array containing all of the input checkboxes in the filters form
  * @param specimens - An array containing all of the specimens
  * @param markers - A Leaflet layerGroup for all of the specimen markers
- * @param tableBodyRows - A NodeList of the table body row elements
  */
 export function filterSpecimensInMapAndTable(
     inputFields: HTMLInputElement[],
     inputCheckboxes: HTMLInputElement[],
     specimens: Specimen[],
     markers: L.LayerGroup,
-    // tableBodyRows: NodeListOf<HTMLTableRowElement>,
 ) {
     // Destructure the arrays containing the input fields and input checkboxes
     const [speciesInput, stateInput, dateInput]: HTMLInputElement[] = inputFields;
@@ -604,56 +615,6 @@ export function filterSpecimensInMapAndTable(
     toggleLoader(false);
 }
 
-export function createSpecimenTableRows(filteredSpecimens: Specimen[]): void {
-    const tableBody = document.querySelector('table tbody');
-    console.log('got table body', tableBody)
-
-    filteredSpecimens.forEach((specimen: Specimen) => {
-        const tableRow = document.createElement('tr');
-        const tableDataUsi = document.createElement('td');
-        const tableDataTaxon = document.createElement('td');
-        const tableDataCommonName = document.createElement('td');
-        const tableDataCountry = document.createElement('td');
-        const tableDataState = document.createElement('td');
-        const tableDataLocality = document.createElement('td');
-        const tableDataDate = document.createElement('td');
-        
-        tableDataUsi.innerHTML = `<a href="/specimens/${specimen.usi.toLowerCase()}">${specimen.usi}</a>`;
-        tableDataTaxon.innerText = specimen.taxon;
-        if (specimen.italics) {
-            tableDataTaxon.classList.add('italics');
-        }
-        console.log('common name', specimen.common_name);
-        tableDataCommonName.innerText = specimen.common_name;
-        tableDataCountry.innerText = specimen.country;
-        tableDataState.innerText = specimen.state;
-        tableDataLocality.innerText = specimen.locality;
-        tableDataDate.innerText = specimen.date;
-
-        tableRow.appendChild(tableDataUsi);
-        tableRow.appendChild(tableDataTaxon);
-        tableRow.appendChild(tableDataCommonName);
-        tableRow.appendChild(tableDataCountry);
-        tableRow.appendChild(tableDataState);
-        tableRow.appendChild(tableDataLocality);
-        tableRow.appendChild(tableDataDate);
-        // const rowData = `
-        //     <td><a href="/specimens/${specimen.usi.toLowerCase()}">${specimen.usi}</a></td>
-        //     <td ${specimen.italics ? `class="italics` : ``}>${specimen.taxon}</td>
-        //     <td>${specimen.common_name}</td>
-        //     <td>${specimen.country}</td>
-        //     <td>${specimen.state}</td>
-        //     <td>${specimen.locality}</td>
-        //     <td>${specimen.date}</td>
-        // `;
-        // tableRow.innerHTML = rowData;
-        console.log('finished table row', tableRow);
-        tableBody?.appendChild(tableRow);
-    });
-
-    console.log('table body with everything in it', tableBody);
-}
-
 document.addEventListener('DOMContentLoaded', async () => {
     // Initialize a Leaflet map
     const map = initializeLeafletMap(50.000, -104.180, 3);
@@ -675,7 +636,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const tableHeaders: NodeListOf<HTMLTableCellElement> = document.querySelectorAll('table thead tr th');
     const tableHeaderBtns: NodeListOf<HTMLButtonElement> = document.querySelectorAll('table thead tr th button');
     const tableHeaderBtnImages: NodeListOf<HTMLImageElement> = document.querySelectorAll('table thead tr th button img');
-    const tableBodyRows: NodeListOf<HTMLTableRowElement> = document.querySelectorAll('table tbody tr');
 
     // Initially filter the Leaflet map and table based on the empty filters form
     if (speciesInput.value !== '' || stateInput.value !== '' || dateInput.value !== '') {
@@ -684,7 +644,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             [idInput, unidInput],
             specimens,
             markers,
-            // tableBodyRows,
         );
     } else {
         toggleLoader(false);
@@ -702,7 +661,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 [idInput, unidInput],
                 specimens,
                 markers,
-                // tableBodyRows,
             );
         }, 100);
     });

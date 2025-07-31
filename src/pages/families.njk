@@ -64,9 +64,9 @@ permalink: "/orders/{{ family.order.name.toLowerCase() }}/families/{{ family.nam
             {% endif %}
         </h2>
 
-        <span id="subfamily-list-label" hidden>Species under subfamily {{ subfamily.name }}</span>
+        <span id="subfamily-list-label-{{ subfamily.name }}" hidden>Species under subfamily {{ subfamily.name }}</span>
         <p class="empty-subfamily hide">There are no species pages in this subfamily.</p>
-        <ul aria-labelledby="subfamily-list-label" class="taxonomy-list">
+        <ul aria-labelledby="subfamily-list-label-{{ subfamily.name }}" class="taxonomy-list">
             {% for page in pages | sort(attribute='species.p3') %}
                 {% if page.subfamily.name === subfamily.name %}
                     <li>

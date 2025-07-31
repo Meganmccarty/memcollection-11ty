@@ -24,6 +24,8 @@ jobs:
           node-version: '18.x'
       - name: Install dependencies
         run: npm install --immutable
+      - name: Install Vercel CLI
+        run: npm install -g vercel
       - name: Get Vercel settings
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build site

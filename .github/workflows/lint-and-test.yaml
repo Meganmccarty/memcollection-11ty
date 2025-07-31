@@ -17,8 +17,10 @@ jobs:
           node-version: '18.x'
       - name: install npm dependencies
         run: npm ci
-      - name: run linters
-        run: npm run lint
+      - name: run CSS linter
+        run: npm run lint:css
+      - name: run JS linter
+        run: npm run lint:js
       - name: run unit tests
         run: npm run test:jest
       - name: run e2e tests

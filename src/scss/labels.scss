@@ -161,51 +161,7 @@
     }
 }
 
-@media (min-width: 1650px) {
-    #label-form {
-        fieldset {
-            label {
-                min-width: 15rem;
-                width: 15.6%;
-            }
-
-            /* To style last element in 6th column,
-               need to add +1 to account for legend */
-            label:nth-child(6n+1) {
-                border: none;
-                padding: 0 0 0 0.5rem;
-            }
-        }
-    }
-}
-
-@media (min-width: 1350px) and (max-width: 1649px) {
-    #label-form {
-        fieldset {
-            label {
-                min-width: 11.5rem;
-                width: 18.9%;
-            }
-
-            /* To style element in 1st column (out of 5),
-               need to add +2 to account for legend */
-            label:nth-child(5n+2),
-            label:nth-child(10n+2) {
-                padding: 0 0.5rem 0 0;
-            }
-
-            /* To style last element in 5th column,
-               need to add +1 to account for legend */
-            label:nth-child(5n+1),
-            label:nth-child(10n+1) {
-                border: none;
-                padding: 0 0 0 0.5rem;
-            }
-        }
-    }
-}
-
-@media (min-width: 1150px) and (max-width: 1349px) {
+@media (min-width: 1150px) {
     #label-form {
         fieldset {
             label {

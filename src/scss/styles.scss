@@ -45,6 +45,7 @@
 
 html {
     font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: 400;
     scroll-behavior: smooth;
 }
 
@@ -125,7 +126,7 @@ footer {
     display: none;
 }
 
-.visually-hidden:not(:focus:active) {
+.visually-hidden:not(:focus-visible) {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
     height: 1px;
@@ -133,6 +134,22 @@ footer {
     position: absolute;
     white-space: nowrap;
     width: 1px;
+}
+
+#main-skip-link {
+    background-color: var(--medium-green-level-3);
+    color: var(--black);
+    font-weight: 700;
+    left: calc(50% - 5rem);
+    outline: 0.125rem solid var(--light-green-level-1);
+    outline-offset: 0.125rem;
+    padding: 1rem;
+    position: absolute;
+    text-align: center;
+    text-decoration: underline;
+    top: 0.5rem;
+    width: 10rem;
+    z-index: 50;
 }
 
 @media (min-width: 1300px) {

@@ -20,67 +20,68 @@ js: [
     Note: The generated labels are optimized for printing from <em>Firefox only</em>.
     Chrome cannot render fonts below 4pt, and Safari is not as precise when dealing with decimals (e.g., 2.75pt).
 </p>
-<form id="label-form">
+<form aria-labelledby="label-label" id="label-form">
+    <span hidden id="label-label">Label Generator</span>
     <fieldset>
         <legend>Taxonomy</legend>
-        <label>
+        <label for="order-input">
             Order
-            <input name="order" placeholder="Lepidoptera" type="text"/>
+            <input id="order-input" inputmode="text" name="order" type="text"/>
         </label>
-        <label>
+        <label for="family-input">
             Family
-            <input name="family" placeholder="Papilionidae" type="text"/>
+            <input id="family-input" inputmode="text" name="family" type="text"/>
         </label>
-        <label>
+        <label for="subfamily-input">
             Subfamily
-            <input name="subfamily" placeholder="Papilioninae" type="text"/>
+            <input id="subfamily-input" inputmode="text" name="subfamily" type="text"/>
         </label>
-        <label>
+        <label for="tribe-input">
             Tribe
-            <input name="tribe" placeholder="Troidini" type="text"/>
+            <input id="tribe-input" inputmode="text" name="tribe" type="text"/>
         </label>
-        <label>
+        <label for="genus-input">
             Genus
-            <input name="genus" placeholder="Battus" type="text"/>
+            <input id="genus-input" inputmode="text" name="genus" type="text"/>
         </label>
-        <label>
+        <label for="species-input">
             Species
-            <input name="species" placeholder="philenor" type="text"/>
+            <input id="species-input" inputmode="text" name="species" type="text"/>
         </label>
-        <label>
+        <label for="subspecies-input">
             Subspecies
-            <input name="subspecies" placeholder="hirsuta" type="text"/>
+            <input id="subspecies-input" inputmode="text" name="subspecies" type="text"/>
         </label>
-        <label>
+        <label for="determiner-first-name-input">
             Determiner First Name
-            <input name="determiner_firstname" placeholder="Jane" type="text"/>
+            <input id="determiner-first-name-input" inputmode="text" name="determiner_firstname" type="text"/>
         </label>
-        <label>
+        <label for="determiner-last-name-input">
             Determiner Last Name
-            <input name="determiner_lastname" placeholder="Doe" type="text"/>
+            <input id="determiner-last-name-input" inputmode="text" name="determiner_lastname" type="text"/>
         </label>
-        <label>
+        <label for="determined-year-input">
             Determined Year
-            <input name="determiner_year" placeholder="2015" type="number"/>
+            <input id="determined-year-input" inputmode="text" name="determiner_year" type="number"/>
         </label>
     </fieldset>
     <fieldset>
         <legend>Specimen Info</legend>
-        <label>
+        <label for="usi-input">
             Unique Specimen Identifier (USI)
-            <input name="usi" placeholder="MEM-000000" type="text"/>
+            <input id="usi-input" inputmode="text" name="usi" type="text"/>
         </label>
-        <label>
+        <label for="preparer-first-name-input">
             Preparer First Name
-            <input name="preparer_firstname" placeholder="Jane" type="text"/>
+            <input id="preparer-first-name-input" inputmode="text" name="preparer_firstname" type="text"/>
         </label>
-        <label>
+        <label for="preparer-last-name-input">
             Preparer Last Name
-            <input name="preparer_lastname" placeholder="Doe" type="text"/>
+            <input id="preparer-last-name-input" inputmode="text" name="preparer_lastname" type="text"/>
         </label>
-        <label>
+        <label for="preparation-type-input">
             Preparation Type
-            <select name="preparation">
+            <select id="preparation-type-input" name="preparation">
                 <option></option>
                 <option>alcohol</option>
                 <option>container</option>
@@ -91,22 +92,22 @@ js: [
                 <option>spread</option>
             </select>
         </label>
-        <label>
+        <label for="preparation-date-input">
             Preparation Date
-            <input name="preparation_date" placeholder="2015-07-01" type="date"/>
+            <input id="preparation-date-input" inputmode="text" name="preparation_date" type="date"/>
         </label>
-        <label>
+        <label for="sex-input">
             Sex
-            <select name="sex">
+            <select id="sex-input" name="sex">
                 <option></option>
                 <option>male</option>
                 <option>female</option>
                 <option>unknown</option>
             </select>
         </label>
-        <label>
+        <label for="stage-input">
             Stage
-            <select name="stage">
+            <select id="stage-input" name="stage">
                 <option></option>
                 <option>egg</option>
                 <option>larva</option>
@@ -115,36 +116,36 @@ js: [
                 <option>adult</option>
             </select>
         </label>
-         <label>
+         <label for="labels-printed-input">
             Labels Printed?
-            <select name="labels_printed">
+            <select id="labels-printed-input" name="labels_printed">
                 <option></option>
                 <option>true</option>
                 <option>false</option>
                 <option>unknown</option>
             </select>
         </label>
-        <label>
+        <label for="labeled-input">
             Labeled?
-            <select name="labeled">
+            <select id="labeled-input" name="labeled">
                 <option></option>
                 <option>true</option>
                 <option>false</option>
                 <option>unknown</option>
             </select>
         </label>
-        <label>
+        <label for="photographed-input">
             Photographed?
-            <select name="photographed">
+            <select id="photographed-input" name="photographed">
                 <option></option>
                 <option>true</option>
                 <option>false</option>
                 <option>unknown</option>
             </select>
         </label>
-        <label>
+        <label for="identified-input">
             Identified?
-            <select name="identified">
+            <select id="identified-input" name="identified">
                 <option></option>
                 <option>true</option>
                 <option>false</option>
@@ -154,48 +155,48 @@ js: [
     </fieldset>
     <fieldset>
         <legend>Geography</legend>
-        <label>
+        <label for="country-input">
             Country
-            <input name="country" placeholder="United States of America" type="text"/>
+            <input id="country-input" inputmode="text" name="country" type="text"/>
         </label>
-        <label>
+        <label for="state-input">
             State
-            <input name="state" placeholder="Indiana" type="text"/>
+            <input id="state-input" inputmode="text" name="state" type="text"/>
         </label>
-        <label>
+        <label for="county-input">
             County
-            <input name="county" placeholder="Switzerland" type="text"/>
+            <input id="county-input" inputmode="text" name="county" type="text"/>
         </label>
-        <label>
+        <label for="locality-input">
             Locality
-            <input name="locality" placeholder="Boone Robinson Rd" type="text"/>
+            <input id="locality-input" inputmode="text" name="locality" type="text"/>
         </label>
-        <label>
+        <label for="latitude-input">
             Latitude
-            <input name="gps_lat" placeholder="38.850000" type="number"/>
+            <input id="latitude-input" inputmode="decimal" name="gps_lat" type="number"/>
         </label>
-        <label>
+        <label for="longitude-input">
             Longitude
-            <input name="gps_long" placeholder="-84.865000" type="number"/>
+            <input id="longitude-input" inputmode="decimal" name="gps_long" type="number"/>
         </label>
-        <label>
+        <label for="elevation-input">
             Elevation (meters)
-            <input name="elevation" placeholder="250" type="number"/>
+            <input id="elevation-input" inputmode="numeric" name="elevation" type="number"/>
         </label>
-        <label>
+        <label for="collecting-trip-input">
             Collecting Trip
-            <input name="collecting_trip" placeholder="LepSoc 2019" type="text"/>
+            <input id="collecting-trip-input" inputmode="text" name="collecting_trip" type="text"/>
         </label>
     </fieldset>
     <fieldset>
         <legend>Collecting Event</legend>
-        <label>
+        <label for="day-input">
             Day
-            <input max="31" min="1" name="day" placeholder="5" type="number"/>
+            <input id="day-input" inputmode="numeric" max="31" min="1" name="day" type="number"/>
         </label>
-        <label>
+        <label for="month-input">
             Month
-            <select name="month">
+            <select id="month-input" name="month">
                 <option></option>
                 <option>January</option>
                 <option>February</option>
@@ -211,24 +212,25 @@ js: [
                 <option>December</option>
             </select>
         </label>
-        <label>
+        <label for="year-input">
             Year
-            <input name="year" placeholder="2015" type="number"/>
+            <input id="year-input" inputmode="numeric" name="year" type="number"/>
         </label>
-        <label>
+        <label for="collector-first-name-input">
             Collector First Name
-            <input name="collector_firstname" placeholder="Jane" type="text"/>
+            <input id="collector-first-name-input" inputmode="text" name="collector_firstname" type="text"/>
         </label>
-        <label>
+        <label for="collector-last-name-input">
             Collector Last Name
-            <input name="collector_lastname" placeholder="Doe" type="text"/>
+            <input id="collector-last-name-input" inputmode="text" name="collector_lastname" type="text"/>
         </label>
-        <label>
+        <label for="method-input">
             Method
-            <select name="method">
+            <select id="method-input" name="method">
                 <option></option>
                 <option>Bait</option>
                 <option>By hand</option>
+                <option>LED light sheet</option>
                 <option>Light</option>
                 <option>MV light</option>
                 <option>MV light sheet</option>
@@ -243,25 +245,25 @@ js: [
                 <option>UV trap</option>
             </select>
         </label>
-        <label>
+        <label for="weather-input">
             Weather
-            <input name="weather" placeholder="Partly cloudy" type="text"/>
+            <input id="weather-input" inputmode="text" name="weather" type="text"/>
         </label>
-        <label>
+        <label for="temp-input">
             Temperature (Celsius only)
-            <input name="temperature" placeholder="23.0" type="number"/>
+            <input id="temp-input" inputmode="decimal" name="temperature" type="number"/>
         </label>
-        <label>
+        <label for="time-input">
             Time of Day
-            <input name="time_of_day" type="time"/>
+            <input id="time-input" inputmode="text" name="time_of_day" type="time"/>
         </label>
-        <label>
+        <label for="habitat-input">
             Habitat
-            <input name="habitat" placeholder="Flying in field" type="text"/>
+            <input id="habitat-input" inputmode="text" name="habitat" type="text"/>
         </label>
-        <label>
+        <label for="notes-input">
             Notes
-            <input name="notes" placeholder="Double check locality" type="text"/>
+            <input id="notes-input" inputmode="text" name="notes" type="text"/>
         </label>
     </fieldset>
     <div class="form-buttons">

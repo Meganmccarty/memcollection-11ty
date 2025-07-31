@@ -1,5 +1,10 @@
 @use 'shared-styles/taxon.scss';
 
+#empty-family {
+    color: var(--off-white);
+    margin: 2rem 0 0 1.5rem;
+}
+
 ul.taxonomy-list {
     li {
         min-height: 14.75rem;
